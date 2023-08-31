@@ -115,7 +115,18 @@ Merging Development Into Main:
 2. Update main by fetch and pull changes `git fetch` and `git pull`
 3. Update main with development `git merge development` with branch rules use GitHub interface Create Pull Request
 
-Troubleshooting:
+**Opening applications in WSL Ubuntu Command line:**
+
+Need to use the application path <path>/<application>.exe
+For example: `notepad.exe newfile.py` will use notepad to create a Python file called newfile
+
+(Optional)Set Up Aliases in shell config file:
+Add the following lines to the .bashrc in /home `ls -a` and `nano .bashrc`
+Note: Your path may vary
+`alias studio="/mnt/c/Program\ Files/Android/Android\ Studio/bin/studio64.exe"`
+Using `studio` in command line would allow you to use Android Studio
+
+**Troubleshooting:**
 If you used HTTPS instead of SSH you can check `git remote -v` and change to
 SSH using `git remote set-url origin git@github.com:username/repo.git`
 
