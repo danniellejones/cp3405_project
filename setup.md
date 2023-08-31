@@ -129,7 +129,7 @@ Selected Framework: Flutter
 
 1. Download the zip file from https://docs.flutter.dev/get-started/install/windows, create directory in C: called Flutter, Extract all to the Flutter folder
 2. (Optional) Copy your PATH in-case it needs to be reverted back `echo $PATH`
-3. To install: Append new path of flutter bin to PATH env variables: can do in command line `export PATH="${PATH}<new-path>"` in wsl this should start from home/
+3. To install: Append new path of flutter bin to PATH env variables: can do in command line `export PATH="${PATH}:<new-path>"` in wsl this should start from home/
 4. Check it has been added correctly `echo $PATH` new path should have been appended
 
 Either in Ubuntu Command Line or In a terminal in the IDE
