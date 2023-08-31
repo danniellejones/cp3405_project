@@ -100,7 +100,7 @@ Clone Project and Use Git Commands:
 3. In Ubuntu terminal, wse Git to clone the repo `git clone ssh:<url>`
 4. Go to your new project `cd <repo-directory-name>` (can use `ls` to see files and `ls -a` to see hidden files)
 5. Check your branch `git branch`
-6. Create a new branch and switch to it using either `git checkout -b <branch-name>` or `git branch <branchname>`
+6. Create a new branch and switch to it using either `git checkout -b <branch-name> <branch-to-base-off>` or `git branch <branchname> <branch-to-base-off> `
    then, `git checkout <branchname>` (might be `git switch -c <branchname>` for newer git versions)
 7. Confirm you are on the right branch `git branch`
 8. To see what you have staged in git use `git status` red is un-staged, green is staged
@@ -113,7 +113,7 @@ Clone Project and Use Git Commands:
 Merging Development Into Main:
 1. Check out main branch `git checkout main`
 2. Update main by fetch and pull changes `git fetch` and `git pull`
-3. Update main with development `git merge development`
+3. Update main with development `git merge development` with branch rules use GitHub interface Create Pull Request
 
 Troubleshooting:
 If you used HTTPS instead of SSH you can check `git remote -v` and change to
