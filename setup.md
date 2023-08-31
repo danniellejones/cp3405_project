@@ -127,14 +127,14 @@ Selected Framework: Flutter
 
 #### Installation
 
-1. Download the zip file from https://docs.flutter.dev/get-started/install/windows, create directory in C: called Flutter, Extract all to the Flutter folder
-2. (Optional) Copy your PATH in-case it needs to be reverted back `echo $PATH`
-3. To install: Append new path of flutter bin to PATH env variables: can do in command line `export PATH="${PATH}:<new-path>"` in wsl this should start from home/
+1. Download the LINUX zip file from https://docs.flutter.dev/get-started/install/linux#update-your-path
+2. Create directory in wsl /home called Flutter, `cd <flutter-directory>` and extract zip `tar xf flutter_linux_3.13.2-stable.tar.xz`
+3. Navigate to the bin directory `ls -a` and `cd <path-to-bin>`
+4. Print out directory path `pwd` and copy it (right-click)
+3. To install: Append new path of flutter bin to PATH env variables: can do in command line for the terminal session or add to .bashrc in /home (`cd` to return to root) `nano .bashrc` for permanent `export PATH="${PATH}:<result-from-pwd-command>"` in wsl this should start from home/ and windows will be /mnt/c/...
 4. Check it has been added correctly `echo $PATH` new path should have been appended
-
-Either in Ubuntu Command Line or In a terminal in the IDE
-Can use `flutter --version` in command line to check installation
-Command `flutter doctor` will show suggestions for development, may need to install the Android SDK Command Line tools
+5. Check installation worked `flutter --version`
+6. Check `flutter doctor` to check other requirements, may need to install the Android SDK Command Line tools
 from listed link (generally comes with Android Studio - under SDK manager)
 
 DevTools Installation:
