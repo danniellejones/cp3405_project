@@ -147,8 +147,25 @@ Selected Framework: Flutter
 5. Check installation worked `flutter --version`
 6. Check `flutter doctor` to check other requirements, may need to install the Android SDK Command Line tools
 from listed link (generally comes with Android Studio - under SDK manager)
+7. Install Linux tools `sudo apt install clang ninja-build cmake pkg-config libgtk-3-dev`
+8. Chrome Browser: to use windows application `cmd.exe /C start chrome` to open using wsl, add `export CHROME_EXECUTABLE="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"` to .bashrc or install [google-chrome on wsl](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps#install-support-for-linux-gui-apps)
+9. Set Android SDK - may automatically work, if it doesn't follow the instructions below
 
-DevTools Installation:
+**Android SDK**
+
+Update with your path to Android SDK (Usually located in Users/User/AppData/Local...)
+
+In Windows Powershell (as Admin):
+1. Create `ANDROID_HOME` environment variable `[System.Environment]::SetEnvironmentVariable("ANDROID_HOME", "C:\Users\YourUsername\AppData\Local\Android\Sdk", [System.EnvironmentVariableTarget]::Machine)`
+2. Add ANDROID_HOME to PATH `$env:Path += ";%ANDROID_HOME%\tools"`
+
+In Ubuntu Terminal:
+1. Create ANDROID_HOME variable via shell config file `echo 'export ANDROID_HOME="/mnt/c/Users/YourUsername/AppData/Local/Android/Sdk"' >> ~/.bashrc`
+2. Add ANDROID_HOME to PATH tools `echo 'export PATH="$PATH:$ANDROID_HOME/tools"' >> ~/.bashrc`
+3. Add ANDROID_HOME to PATH platform-tools `echo 'export PATH="$PATH:$ANDROID_HOME/platform-tools"' >> ~/.bashrc`
+3. Execute shell config file `source ~/.bashrc`
+
+**DevTools Installation:**
 If dart is on your PATH then `dart devtools` in [command line](https://docs.flutter.dev/tools/devtools/cli)
 OR
 In [Visual Studio Code](https://docs.flutter.dev/tools/devtools/vscode) install the Dart extension (usually automatic
@@ -160,6 +177,31 @@ with Flutter install)
 2. Create app using flutter `flutter create <app-name>` or `flutter create .` to create in current directory
 3. Check successful creation `ls` check directory, then `cd <app-directory>`
 4. Launch `flutter run`
+
+### Run Project
+1. Open and run the following commands in Ubuntu terminal
+2. Go to Flutter app directory `cd <path-to-flutter-app>`
+3. Open in Visual Studio Code `code .`
+4. To see available devices for run `flutter devices`
+
+Run Flutter from Command Line:
+* Open Flutter app in linux environment `flutter run` or run through lib/main.dart
+* Open [Flutter in web](https://docs.flutter.dev/platform-integration/web/building) `flutter run -d web`
+* Open in Emulator: Open android studio using alias `studio`, then go to device manager and create a device, run the device and then in vsc terminal `flutter run -d <device-name>`
+
+Run Flutter app from VSC:
+* Click bottom right corner and select Linux, web server or emulator
+* Right-click main.dart file and run without/with debugging
+* In wsl the emulator may not be available
+	1. In Ubuntu, check for install `adb --version` if not installed install adb `sudo apt install adb`
+	2. Open Android Studio device manager and run an emulator
+	3. Go to Windows Powershell and see running emulator `adb devices`
+	4. Go to Ubuntu terminal `adb devices`
+
+**ISSUES!!!**
+Instructions to connect via adb between wsl and windows have not been successful.
+Instructions to use Android Studio installation in wsl are unsuccessful as requires virtualization which is not available in wsl without a VM.
+Potential solution: Local development in Windows for Flutter?
 
 #### Integration with Firebase
 
