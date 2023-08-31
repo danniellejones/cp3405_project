@@ -107,7 +107,7 @@ Clone Project and Use Git Commands:
 9. To add files to staging `git add .` the dot means all files
 10. Use `git status` should all be green now...
 11. To commit with a message `git commit -m "my commit message"`
-12. To push to GitHub `git push`
+12. To push to GitHub `git push`, may need to use `git push -u origin <branch-name>` to set upstream the first time
 13. If you need to retrieve changes someone has made to a branch from GitHub use `git fetch`, then `git pull`
 
 Troubleshooting:
