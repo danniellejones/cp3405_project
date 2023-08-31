@@ -110,6 +110,11 @@ Clone Project and Use Git Commands:
 12. To push to GitHub `git push`, may need to use `git push -u origin <branch-name>` to set upstream the first time
 13. If you need to retrieve changes someone has made to a branch from GitHub use `git fetch`, then `git pull`
 
+Merging Development Into Main:
+1. Check out main branch `git checkout main`
+2. Update main by fetch and pull changes `git fetch` and `git pull`
+3. Update main with development `git merge development`
+
 Troubleshooting:
 If you used HTTPS instead of SSH you can check `git remote -v` and change to
 SSH using `git remote set-url origin git@github.com:username/repo.git`
