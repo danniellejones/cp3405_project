@@ -1,5 +1,111 @@
 # Local Environment
 
+## Quick Start Guide
+
+### Visual Studio Code
+
+1. Install [Visual Studio Code](https://code.visualstudio.com/)
+2. Go to Extensions
+3. Search for Flutter (by Dart Code)
+4. Install Flutter Plugin
+5. Close Visual Studio Code
+
+### Git 
+1. Install [Git](https://git-scm.com/downloads)
+
+### GitHub SSH Keys OR HTTPS
+Use one of the following setups to connect to GitHub:
+
+**SSH Key**
+1. Open git bash
+2. In users/user create new directory `mkdir .ssh` and `cd .ssh`
+3. Generate key pair `ssh-keygen -t ed25519 -C "youremail@example.com"`
+4. If pass phrase is not desired just press enter
+5. Name the key
+6. View contents of public key `type <key-name.pub>`
+7. Copy public key and add to GitHub (SSH under account settings) or Deploy Keys in repository
+8. In git bash: start ssh agent command includes back ticks >> eval `ssh-agent -s`
+9. Add private key to ssh agent `ssh-add ~/.ssh/key-name` or `ssh-add ~/key-name` if already in directory
+10. Go to GitHub: copy SSH link
+11. In git bash: `git clone <ssh-link>`
+Advantages: More secure connection
+Disadvantages: Requires use of git bash terminal and above steps for each session
+
+**HTTPS**
+In GitHub:
+1. GitHub > Clone > Copy HTTPS link
+In command line: 
+Go to desired project directory `cd <path>`
+Clone repository `git clone <https-link>`
+Advantages: Faster and easier to Access
+Disadvantages: Less Secure
+
+### Flutter Setup
+1. Download the [Windows zip file](https://docs.flutter.dev/get-started/install/windows)
+2. Create directory in C: drive called Flutter
+3. Navigate to the bin directory and copy the path
+4. In start search type 'env' and select Edit System Environment Variables
+3. Click Environment Variables
+4. In the top user section, click on path, edit and new add in the copied path
+5. Open a command line and Check installation worked `flutter --version`
+6. Check `flutter doctor` to check other requirements: Chrome Browser, Android Studio provides SDK manager and virutal device manager
+
+### Browser and Android Studio
+1. Install Google Chrome, Firefox and Edge for testing - most development will occur in Chrome
+2. Install Android Studio
+3. Open Android Studio
+4. Under more options at the home screen click SDK Manager to check installs
+5. Go back to the home and under more options click Virtual Device Manager
+6. Create a device (Pixel 5 or higher) and install API 33 Tiramisu
+7. Run the device and it should be automatically available in Visual Studio Code
+
+### Creating a New Flutter Project
+
+1. Go to repo directory `cd <repo-directory-name>`
+2. Create app using flutter either `flutter create <app-name>` to create app sub-directory or `flutter create .` to create in current directory
+
+### Run Flutter Project
+1. Open command terminal or terminal in Visual Studio Code
+4. Launch `flutter run`
+
+### Use Git Commands
+1. The following can be done in commands as below or using GitHub Desktop for a GUI interface
+2. Go to GitHub and copy either HTTPS or SSH link
+3. Git to clone the repo `git clone <url>`
+4. Go to your new project `cd <repo-directory-name>`
+5. Check your current branch `git branch`
+6. Create a new branch and switch to it using either `git checkout -b <branch-name> <branch-to-base-off>` or `git branch <branchname> <branch-to-base-off> `
+   then, `git checkout <branchname>` (might be `git switch -c <branchname>` for newer git versions)
+7. Confirm you are on the right branch `git branch`
+8. To see what you have staged in git use `git status` red is un-staged, green is staged
+9. To add files to staging `git add .` the dot means all files
+10. Use `git status` should all be green now...
+11. To commit with a message `git commit -m "my commit message"`
+12. To push to GitHub `git push`, may need to use `git push -u origin <branch-name>` to set upstream the first time
+13. If you need to retrieve changes someone has made to a branch from GitHub use `git fetch`, then `git pull`
+
+**Merging Branches:**
+
+Commands (without branch projection rules)
+1. Check out main branch `git checkout <branch-name-to-merge-into>`
+2. Update main by fetch and pull changes `git fetch` and `git pull`
+3. Update main with development `git merge <branch-name-to-merge-from>` with branch rules use GitHub interface Create Pull Request
+
+Pull Request (with branch projection rules)
+1. In GitHub, select the branch then Compare and create pull request
+2. Check that branch destinations are correct (left-most is what will be merged into) (right-most is from which branch)
+3. Write a commet and create
+4. Pull Request to be reviewed by another developer from Pull Requests tab
+5. Select the pull request
+6. Near the bottom > Add your Review
+7. Approve with comments
+8. Add a comment and approve
+9. Original developer goes to pull requests
+10. Open approved pull request
+11. Click merge
+12. If own branch (not developement or main) you may opt to delete branch
+//-------------------------------------------------------------------------------------------------
+
 ## Integrated Development Environment (IDE)
 
 ### Visual Studio Code
