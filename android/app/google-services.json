@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "206192329935",
+    "project_id": "scrummies-384d5",
+    "storage_bucket": "scrummies-384d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206192329935:android:1850dd4637b4d7cc78a3ba",
+        "android_client_info": {
+          "package_name": "com.company.Scrummies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206192329935-u47pvho5uubdgjcntt7d7m52r7idh2ii.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeJjhcJ09zpjj6Vdd_93Z0w23Se5IeQSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "206192329935-u47pvho5uubdgjcntt7d7m52r7idh2ii.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
