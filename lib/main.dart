@@ -1,7 +1,48 @@
-import 'package:flutter/material.dart';
+import 'dart:math';
 
-void main() {
-  runApp(const MyApp());
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+
+var testData = ''; 
+
+Future main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  final studentsEntity = FirebaseFirestore.instance.collection('Students');
+
+  //final snapshot = await db.collection('Students').where('userType', isEqualTo: 'Student').get();
+
+  final snapshot = await studentsEntity.doc('test-Student').get(); 
+  final studentData = snapshot.data();
+
+  testData = studentData.toString() + '123';
+
+
+  CollectionReference _collectionRef = FirebaseFirestore.instance.collection('Students');
+
+  Future <void> getData() async {
+    QuerySnapshot querySnapshot = await _collectionRef.get();
+    final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+    testData = allData[0].toString(); 
+  }
+  
+
+
+  
+  // testData = FirebaseFirestore.instance.collection('Students').count().toString();
+
+    runApp(const MyApp());
+
+
+  
 }
 
 class MyApp extends StatelessWidget {
@@ -56,6 +97,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  // final String _studentName = 'My Name is Jay Davis'; 
+  final String _studentName = testData; 
 
   void _incrementCounter() {
     setState(() {
@@ -112,6 +155,11 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            Text(
+              _studentName, 
+              style: Theme.of(context).textTheme.headlineMedium,
+
+            )
           ],
         ),
       ),
