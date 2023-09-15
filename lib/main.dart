@@ -1,3 +1,5 @@
+import 'dart:html';
+import 'dart:js_interop';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,28 +24,24 @@ Future main() async {
 
   final snapshot = await studentsEntity.doc('test-Student').get(); 
   final studentData = snapshot.data();
-
+  
   testData = studentData.toString() + '123';
+  testData = studentData!.entries.last.value.toString();
+  testData = studentData!.entries.elementAt(5).value.toString();
+
+  // testData = studentData!.entries.toList().elementAt(0).value.toString();
 
 
-  CollectionReference _collectionRef = FirebaseFirestore.instance.collection('Students');
-
-  Future <void> getData() async {
-    QuerySnapshot querySnapshot = await _collectionRef.get();
-    final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
-    testData = allData[0].toString(); 
-  }
-  
-
-
-  
-  // testData = FirebaseFirestore.instance.collection('Students').count().toString();
+  studentsEntity.get().then((QuerySnapshot querySnapshot) {
+    querySnapshot.docs.forEach((doc) {
+      testData = doc.toString(); 
+     });
+  });
 
     runApp(const MyApp());
-
-
   
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
