@@ -16,7 +16,7 @@ Widget buildUsername() {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: TextField(
           decoration: InputDecoration(
               border: OutlineInputBorder(), hintText: 'Username'),
@@ -33,7 +33,7 @@ Widget buildPassword() {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: TextField(
           obscureText: true,
           decoration: InputDecoration(
@@ -43,6 +43,19 @@ Widget buildPassword() {
         ),
       )
     ],
+  );
+}
+
+Widget forgotPasswordBtn() {
+  return Container(
+    alignment: Alignment.centerRight,
+    child: TextButton(
+      onPressed: () => print('Forgot button pressed'),
+      child: const Text(
+        'Forgot Password?',
+        style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold),
+      ),
+    ),
   );
 }
 
@@ -63,7 +76,9 @@ class _LoginPageState extends State<LoginPage> {
           ),
           const SizedBox(height: 50),
           buildUsername(),
-          buildPassword()
+          const SizedBox(height: 20),
+          buildPassword(),
+          forgotPasswordBtn()
         ],
       ),
     ));
