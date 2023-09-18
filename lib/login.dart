@@ -20,8 +20,10 @@ class _LoginPageState extends State<LoginPage> {
       children: <Widget>[
         TextField(
           decoration: InputDecoration(
-              border: OutlineInputBorder(), hintText: 'Username'),
-          textAlign: TextAlign.center,
+              border: OutlineInputBorder(),
+              prefixIcon: Icon(Icons.person),
+              hintText: 'Username'),
+          textAlign: TextAlign.left,
           keyboardType: TextInputType.name, // Not sure if name is correct
         ),
       ],
@@ -35,8 +37,10 @@ class _LoginPageState extends State<LoginPage> {
         TextField(
           obscureText: true,
           decoration: InputDecoration(
-              border: OutlineInputBorder(), hintText: 'Enter password'),
-          textAlign: TextAlign.center,
+              border: OutlineInputBorder(),
+              prefixIcon: Icon(Icons.lock),
+              hintText: 'Enter password'),
+          textAlign: TextAlign.left,
           keyboardType: TextInputType.name, // Not sure if name is correct
         ),
       ],
@@ -106,6 +110,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget buildSignUp() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text("Don't have an account?"),
         TextButton(
