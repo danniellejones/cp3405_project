@@ -17,16 +17,13 @@ class _LoginPageState extends State<LoginPage> {
   Widget buildUsername() {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          child: TextField(
-            decoration: InputDecoration(
-                border: OutlineInputBorder(), hintText: 'Username'),
-            textAlign: TextAlign.center,
-            keyboardType: TextInputType.name, // Not sure if name is correct
-          ),
-        )
+      children: <Widget>[
+        TextField(
+          decoration: InputDecoration(
+              border: OutlineInputBorder(), hintText: 'Username'),
+          textAlign: TextAlign.center,
+          keyboardType: TextInputType.name, // Not sure if name is correct
+        ),
       ],
     );
   }
@@ -34,24 +31,20 @@ class _LoginPageState extends State<LoginPage> {
   Widget buildPassword() {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          child: TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(), hintText: 'Enter password'),
-            textAlign: TextAlign.center,
-            keyboardType: TextInputType.name, // Not sure if name is correct
-          ),
-        )
+      children: <Widget>[
+        TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+              border: OutlineInputBorder(), hintText: 'Enter password'),
+          textAlign: TextAlign.center,
+          keyboardType: TextInputType.name, // Not sure if name is correct
+        ),
       ],
     );
   }
 
   Widget buildForgotPasswordBtn() {
     return Container(
-      height: 20,
       alignment: Alignment.centerRight,
       child: TextButton(
         onPressed: () => print('Forgot button pressed'),
@@ -70,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Row(
         children: [
           Theme(
-              data: ThemeData(unselectedWidgetColor: Colors.blueAccent),
+              data: ThemeData(unselectedWidgetColor: Colors.blue),
               child: Checkbox(
                 value: isRememberMe,
                 checkColor: Colors.green,
@@ -87,6 +80,23 @@ class _LoginPageState extends State<LoginPage> {
                 color: Colors.blueAccent, fontWeight: FontWeight.bold),
           )
         ],
+      ),
+    );
+  }
+
+  Widget buildLoginBtn() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 25),
+      width: double.infinity,
+      alignment: Alignment.center,
+      child: ElevatedButton(
+        onPressed: () => print('Login button pressed'),
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue, elevation: 5),
+        child: const Text(
+          'Login',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }
@@ -110,7 +120,8 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(height: 20),
           buildPassword(),
           buildForgotPasswordBtn(),
-          buildRememberMeCb()
+          buildRememberMeCb(),
+          buildLoginBtn()
         ],
       ),
     ));
