@@ -92,12 +92,31 @@ class _LoginPageState extends State<LoginPage> {
       child: ElevatedButton(
         onPressed: () => print('Login button pressed'),
         style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue, elevation: 5),
+            backgroundColor: Colors.blue,
+            elevation: 5,
+            minimumSize: const Size.fromHeight(50)),
         child: const Text(
           'Login',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
+    );
+  }
+
+  Widget buildSignUp() {
+    return Row(
+      children: [
+        const Text("Don't have an account?"),
+        TextButton(
+          onPressed: () => print('Sign up button pressed'),
+          child: const Text(
+            'Sign up',
+            style: TextStyle(
+                color: Colors.blueAccent, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ],
     );
   }
 
@@ -121,7 +140,8 @@ class _LoginPageState extends State<LoginPage> {
           buildPassword(),
           buildForgotPasswordBtn(),
           buildRememberMeCb(),
-          buildLoginBtn()
+          buildLoginBtn(),
+          buildSignUp()
         ],
       ),
     ));
