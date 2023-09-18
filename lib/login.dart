@@ -47,47 +47,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget buildForgotPasswordBtn() {
-    return Container(
-      alignment: Alignment.centerRight,
-      child: TextButton(
-        onPressed: () => print('Forgot button pressed'),
-        child: const Text(
-          'Forgot Password?',
-          style:
-              TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-
-  Widget buildRememberMeCb() {
-    return Container(
-      height: 20,
-      child: Row(
-        children: [
-          Theme(
-              data: ThemeData(unselectedWidgetColor: Colors.blue),
-              child: Checkbox(
-                value: isRememberMe,
-                checkColor: Colors.green,
-                activeColor: Colors.white,
-                onChanged: (value) {
-                  setState(() {
-                    isRememberMe = value!;
-                  });
-                },
-              )),
-          const Text(
-            'Remember me',
-            style: TextStyle(
-                color: Colors.blueAccent, fontWeight: FontWeight.bold),
-          )
-        ],
-      ),
-    );
-  }
-
   Widget buildLoginBtn() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25),
@@ -125,6 +84,44 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Widget buildAccountManagement() {
+    return Row(
+      children: [
+        Theme(
+          data: ThemeData(unselectedWidgetColor: Colors.blue),
+          child: Checkbox(
+            value: isRememberMe,
+            checkColor: Colors.green,
+            activeColor: Colors.white,
+            onChanged: (value) {
+              setState(() {
+                isRememberMe = value!;
+              });
+            },
+          ),
+        ),
+        const Text(
+          'Remember me',
+          style: TextStyle(
+            color: Colors.blueAccent,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Spacer(), // Spacer widget will push the "Forgot Password?" TextButton to the right
+        TextButton(
+          onPressed: () => print('Forgot button pressed'),
+          child: const Text(
+            'Forgot Password?',
+            style: TextStyle(
+              color: Colors.blueAccent,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -143,8 +140,7 @@ class _LoginPageState extends State<LoginPage> {
           buildUsername(),
           const SizedBox(height: 20),
           buildPassword(),
-          buildForgotPasswordBtn(),
-          buildRememberMeCb(),
+          buildAccountManagement(),
           buildLoginBtn(),
           buildSignUp()
         ],
