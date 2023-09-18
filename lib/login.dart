@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Don't have an account?"),
+        const Text('Don\'t have an account?'),
         TextButton(
           onPressed: () => print('Sign up button pressed'),
           child: const Text(
@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Spacer(), // Spacer widget will push the "Forgot Password?" TextButton to the right
+        const Spacer(),
         TextButton(
           onPressed: () => print('Forgot button pressed'),
           child: const Text(
