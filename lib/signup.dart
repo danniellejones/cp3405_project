@@ -1,3 +1,4 @@
+import 'package:cp3405_project/login.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -108,6 +109,26 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
+  Widget buildLogIn() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text('Already have an account?'),
+        TextButton(
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => LoginPage()));
+          },
+          child: const Text(
+            'Log in',
+            style: TextStyle(
+                color: Colors.blueAccent, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,7 +155,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 const SizedBox(height: 10),
                 buildPassword(),
                 const SizedBox(height: 20),
-                buildSignUpBtn()
+                buildSignUpBtn(),
+                buildLogIn()
               ])),
     );
   }
