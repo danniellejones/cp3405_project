@@ -1,3 +1,4 @@
+import 'package:cp3405_project/widgets/pomodoro_widget.dart';
 import 'package:flutter/material.dart';
 
 class ColourChange extends StatefulWidget {
@@ -101,6 +102,25 @@ class _ColourChangeState extends State<ColourChange> {
           selectedItemColor: Colors.amber,
           onTap: _onItemTapped,
         ),
-        body: Container());
+        body: const Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Icon(color: Colors.red, Icons.heart_broken),
+                Icon(Icons.heart_broken),
+                Icon(Icons.heart_broken),
+                Icon(Icons.heart_broken),
+                Icon(Icons.heart_broken),
+              ]),
+              Text(
+                'Greyscale Meter',
+                style: TextStyle(fontSize: 24),
+              ),
+              Text('Your phone must be idle to restore health!'),
+              PomodoroWidget(),
+            ],
+          ),
+        ));
   }
 }
