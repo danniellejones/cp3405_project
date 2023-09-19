@@ -1,11 +1,12 @@
+import 'package:cp3405_project/signup.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const LoginPage());
+  runApp(const MaterialApp(home: LoginPage()));
 }
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -24,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
               prefixIcon: Icon(Icons.person),
               hintText: 'Username'),
           textAlign: TextAlign.left,
-          keyboardType: TextInputType.name, // Not sure if name is correct
+          keyboardType: TextInputType.text,
         ),
       ],
     );
@@ -41,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
               prefixIcon: Icon(Icons.lock),
               hintText: 'Enter password'),
           textAlign: TextAlign.left,
-          keyboardType: TextInputType.name, // Not sure if name is correct
+          keyboardType: TextInputType.text, // Not sure if name is correct
         ),
       ],
     );
@@ -73,7 +74,10 @@ class _LoginPageState extends State<LoginPage> {
       children: [
         const Text('Don\'t have an account?'),
         TextButton(
-          onPressed: () => print('Sign up button pressed'),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => const SignUpPage()));
+          },
           child: const Text(
             'Sign up',
             style: TextStyle(
@@ -124,9 +128,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
-      appBar: AppBar(title: const Text('Welcome')),
+    return Scaffold(
+      appBar: AppBar(title: const Text('World of Schoolcraft')),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -145,6 +148,6 @@ class _LoginPageState extends State<LoginPage> {
           buildSignUp()
         ],
       ),
-    ));
+    );
   }
 }

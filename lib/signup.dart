@@ -7,8 +7,14 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('World of Schoolcraft'),
+        title: Text('World of Schoolcraft'),
       ),
+      body: const SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [],
+          )),
     );
   }
 }
