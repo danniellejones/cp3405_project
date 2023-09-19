@@ -22,12 +22,25 @@ Future main() async {
 
   //final snapshot = await db.collection('Students').where('userType', isEqualTo: 'Student').get();
 
-  final snapshot = await studentsEntity.doc('test-Student').get(); 
-  final studentData = snapshot.data();
+  //final snapshot = await studentsEntity.doc('test-Student').get(); 
+  final snapshot = await studentsEntity.where('Username', isEqualTo: 'username2').get(); 
+  final studentData = snapshot.docChanges.first.doc.data(); 
   
   testData = studentData.toString() + '123';
-  testData = studentData!.entries.last.value.toString();
-  testData = studentData!.entries.elementAt(5).value.toString();
+  Iterable<MapEntry<String, dynamic>> entries = studentData!.entries; 
+  for (final entry in studentData.entries) {
+    if (entry.key == 'Username') {
+      testData = entry.value; 
+    }
+  }
+  
+  // testData = studentData!.entries.isNotEmpty.toString(); // Checks if account has values within. 
+
+  
+  //final snapshot = await studentsEntity.doc('test-Student').get(); 
+  //final studentData = snapshot.toString();
+  // testData = studentData!.entries.last.value.toString();
+  // testData = studentData!.entries.elementAt(5).value.toString();
 
   // testData = studentData!.entries.toList().elementAt(0).value.toString();
 
