@@ -13,35 +13,39 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
   bool isRememberMe = false;
 
-  Widget buildUsername() {
-    return const Column(
+  Widget buildEmail() {
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TextField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               border: OutlineInputBorder(),
               prefixIcon: Icon(Icons.person),
-              hintText: 'Username'),
+              hintText: 'Email'),
           textAlign: TextAlign.left,
-          keyboardType: TextInputType.text,
+          keyboardType: TextInputType.emailAddress,
+          controller: emailController,
         ),
       ],
     );
   }
 
   Widget buildPassword() {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TextField(
           obscureText: true,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               border: OutlineInputBorder(),
               prefixIcon: Icon(Icons.lock),
               hintText: 'Enter password'),
           textAlign: TextAlign.left,
+          controller: passwordController,
           keyboardType: TextInputType.text, // Not sure if name is correct
         ),
       ],
@@ -129,25 +133,34 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('World of Schoolcraft')),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            'Login',
-            style: TextStyle(
-                color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold),
+        appBar: AppBar(title: const Text('World of Schoolcraft')),
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Login',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 50),
+              buildEmail(),
+              const SizedBox(height: 20),
+              buildPassword(),
+              buildAccountManagement(),
+              buildLoginBtn(),
+              buildSignUp()
+            ],
           ),
-          const SizedBox(height: 50),
-          buildUsername(),
-          const SizedBox(height: 20),
-          buildPassword(),
-          buildAccountManagement(),
-          buildLoginBtn(),
-          buildSignUp()
-        ],
-      ),
-    );
+        ));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }
