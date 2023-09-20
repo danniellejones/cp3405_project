@@ -86,11 +86,18 @@ Disadvantages: Less Secure
 
 **Merging Branches:**
 
-Commands (without branch projection rules)
-1. Check out main branch `git checkout <branch-name-to-merge-into>`
-2. Update main by fetch and pull changes `git fetch` and `git pull`
-3. Update main with development `git merge <branch-name-to-merge-from>` with branch rules use GitHub interface Create Pull Request
+Merge Commands for Merge into Development (without branch projection rules):
+1. Commit to your branch `git status` to check what files are staged. Then, `git add .` to add all files. Commit, `git commit -m "My commit message"`.
+2. Push to GitHub `git push`
+3. Switch to development `git checkout development` 
+4. Check that development tracks origin/development `git branch -vv`
+5. Update development with the latest changes from remote `git fetch` then, `git pull`
+6. Merge your branch into development `git merge your-branch`
+7. You may or may not need to do another commit (dependency files may require it) `git commit -m "Your commit message"` and then you need to `git push`
+8. Test development branch to make sure everything is working as expected
+9. If everything works, then go to GitHub and make a pull request into main
 
+Merge into Main from Development (through GitHub with protection rules):
 Pull Request (with branch projection rules)
 1. In GitHub, select the branch then Compare and create pull request
 2. Check that branch destinations are correct (left-most is what will be merged into) (right-most is from which branch)
@@ -104,6 +111,24 @@ Pull Request (with branch projection rules)
 10. Open approved pull request
 11. Click merge
 12. If own branch (not developement or main) you may opt to delete branch
+
+**Updating Your Branch After Merges**
+Once others have merged into development, you can follow these steps to update your own branches. 
+
+STEP 1
+You will need to update the **development branch** with the latest changes.
+To start, switch to your development branch `git checkout development`, get the latest changes to the branch  `git fetch` and  update the branch with those changes `git pull` from origin/development.
+
+STEP 2
+Update **your branch** with the latest changes from development. 
+
+Option A
+Merge development into your branch (it is the opposite direction to the merging into development), `git checkout your-branch`, then `git merge development`. 
+
+OR 
+
+Option B
+**Recommended:  if your confused about git merge and how it works** delete your branch by first switching to development `git checkout development`,  then deleting your branch `git branch -d <your-branch>` and re-make a new branch to track origin/development (`git checkout -b new-branch-name origin/development`).
 //-------------------------------------------------------------------------------------------------
 
 ## Integrated Development Environment (IDE)
