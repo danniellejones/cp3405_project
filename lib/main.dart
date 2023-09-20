@@ -27,18 +27,12 @@ Future main() async {
   final studentData = snapshot.docChanges.first.doc.data(); 
   
   testData = studentData.toString() + '123';
-  var _username = ''; 
   Iterable<MapEntry<String, dynamic>> entries = studentData!.entries; 
   for (final entry in studentData.entries) {
     if (entry.key == 'Username') {
-      _username = entry.value; 
+      testData = entry.value; 
     }
   }
-
-  var _checkUsername = 'username2'; 
-  testData = _username.compareTo(_checkUsername).toString() + 'true'; // 0 indicates the values are equal. Other values doesn't mean the values are equal. 
-
-
   
   // testData = studentData!.entries.isNotEmpty.toString(); // Checks if account has values within. 
 
