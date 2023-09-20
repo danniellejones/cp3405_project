@@ -1,9 +1,5 @@
-import 'dart:html';
-import 'dart:js_interop';
-import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -24,17 +20,25 @@ Future main() async {
 
   //final snapshot = await studentsEntity.doc('test-Student').get(); 
   final snapshot = await studentsEntity.where('Username', isEqualTo: 'username2').get(); 
-  final studentData = snapshot.docChanges.first.doc.data(); 
+    final studentData = snapshot.docChanges.first.doc.data(); 
   
   testData = studentData.toString() + '123';
+  var _username = ''; 
   Iterable<MapEntry<String, dynamic>> entries = studentData!.entries; 
   for (final entry in studentData.entries) {
     if (entry.key == 'Username') {
       testData = entry.value; 
+      _username = entry.value; 
     }
   }
+
+  var _checkUsername = 'username2'; 
+  testData = _username.compareTo(_checkUsername).toString() + 'true'; // 0 indicates the values are equal. Other values doesn't mean the values are equal. 
+
+
   
   // testData = studentData!.entries.isNotEmpty.toString(); // Checks if account has values within. 
+
 
   
   //final snapshot = await studentsEntity.doc('test-Student').get(); 
@@ -46,9 +50,9 @@ Future main() async {
 
 
   studentsEntity.get().then((QuerySnapshot querySnapshot) {
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       testData = doc.toString(); 
-     });
+     }
   });
 
     runApp(const MyApp());
