@@ -15,26 +15,29 @@ class _SignUpPageState extends State<SignUpPage> {
   var passwordController = TextEditingController();
   var confirmPasswordController = TextEditingController();
 
+  bool validate = false;
+
   Widget buildName() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TextField(
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            prefixIcon: Icon(Icons.person),
-            hintText: 'First name',
-          ),
+          decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              prefixIcon: Icon(Icons.person),
+              hintText: 'First name',
+              errorText: validate ? 'Please enter first name' : null),
           textAlign: TextAlign.left,
           keyboardType: TextInputType.text,
           controller: firstNameController,
         ),
         SizedBox(height: 10),
         TextField(
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
               border: OutlineInputBorder(),
               prefixIcon: Icon(Icons.person),
-              hintText: 'Last name'),
+              hintText: 'Last name',
+              errorText: validate ? 'Please enter last name' : null),
           textAlign: TextAlign.left,
           keyboardType: TextInputType.text,
           controller: lastNameController,
@@ -48,10 +51,11 @@ class _SignUpPageState extends State<SignUpPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TextField(
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
               border: OutlineInputBorder(),
               prefixIcon: Icon(Icons.email),
-              hintText: 'Email'),
+              hintText: 'Email',
+              errorText: validate ? 'Please enter email' : null),
           textAlign: TextAlign.left,
           keyboardType: TextInputType.text,
           controller: emailController,
@@ -66,10 +70,11 @@ class _SignUpPageState extends State<SignUpPage> {
       children: <Widget>[
         TextField(
           obscureText: true,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
               border: OutlineInputBorder(),
               prefixIcon: Icon(Icons.lock),
-              hintText: 'Enter password'),
+              hintText: 'Enter password',
+              errorText: validate ? 'Please enter password' : null),
           textAlign: TextAlign.left,
           keyboardType: TextInputType.text,
           controller: passwordController,
@@ -77,10 +82,11 @@ class _SignUpPageState extends State<SignUpPage> {
         SizedBox(height: 10),
         TextField(
           obscureText: true,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
               border: OutlineInputBorder(),
               prefixIcon: Icon(Icons.lock),
-              hintText: 'Confirm password'),
+              hintText: 'Confirm password',
+              errorText: validate ? 'Please enter password' : null),
           textAlign: TextAlign.left,
           keyboardType: TextInputType.text,
           controller: confirmPasswordController,
@@ -95,7 +101,23 @@ class _SignUpPageState extends State<SignUpPage> {
       width: double.infinity,
       alignment: Alignment.center,
       child: ElevatedButton(
-        onPressed: () => print('Login button pressed'),
+        onPressed: () {
+          setState(() {
+            firstNameController.text.isEmpty
+                ? validate = true
+                : validate = false;
+            lastNameController.text.isEmpty
+                ? validate = true
+                : validate = false;
+            emailController.text.isEmpty ? validate = true : validate = false;
+            passwordController.text.isEmpty
+                ? validate = true
+                : validate = false;
+            confirmPasswordController.text.isEmpty
+                ? validate = true
+                : validate = false;
+          });
+        },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue,
             elevation: 5,
@@ -164,5 +186,10 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   void dispose() {
     super.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
   }
 }

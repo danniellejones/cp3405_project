@@ -15,6 +15,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+  bool validate = false;
   bool isRememberMe = false;
 
   Widget buildEmail() {
@@ -22,10 +23,11 @@ class _LoginPageState extends State<LoginPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TextField(
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
               border: OutlineInputBorder(),
               prefixIcon: Icon(Icons.person),
-              hintText: 'Email'),
+              hintText: 'Email',
+              errorText: validate ? 'Please enter email' : null),
           textAlign: TextAlign.left,
           keyboardType: TextInputType.emailAddress,
           controller: emailController,
@@ -40,13 +42,14 @@ class _LoginPageState extends State<LoginPage> {
       children: <Widget>[
         TextField(
           obscureText: true,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
               border: OutlineInputBorder(),
               prefixIcon: Icon(Icons.lock),
-              hintText: 'Enter password'),
+              hintText: 'Enter password',
+              errorText: validate ? 'Please enter password' : null),
           textAlign: TextAlign.left,
           controller: passwordController,
-          keyboardType: TextInputType.text, // Not sure if name is correct
+          keyboardType: TextInputType.text,
         ),
       ],
     );
@@ -58,7 +61,14 @@ class _LoginPageState extends State<LoginPage> {
       width: double.infinity,
       alignment: Alignment.center,
       child: ElevatedButton(
-        onPressed: () => print('Login button pressed'),
+        onPressed: () {
+          setState(() {
+            emailController.text.isEmpty ? validate = true : validate = false;
+            passwordController.text.isEmpty
+                ? validate = true
+                : validate = false;
+          });
+        },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue,
             elevation: 5,
@@ -162,5 +172,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void dispose() {
     super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
   }
 }
