@@ -15,6 +15,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+
   bool validate = false;
   bool isRememberMe = false;
 
