@@ -154,25 +154,25 @@ class _LoginPageState extends State<LoginPage> {
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Login',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 50),
-              buildEmail(),
-              const SizedBox(height: 20),
-              buildPassword(),
-              buildAccountManagement(),
-              buildLoginBtn(),
-              buildSignUp()
-            ],
+          child: Center(
+            child: Column(
+              children: [
+                const Text(
+                  'Login',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 50),
+                buildEmail(),
+                const SizedBox(height: 20),
+                buildPassword(),
+                buildAccountManagement(),
+                buildLoginBtn(),
+                buildSignUp()
+              ],
+            ),
           ),
         ));
   }

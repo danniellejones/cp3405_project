@@ -160,27 +160,24 @@ class _SignUpPageState extends State<SignUpPage> {
       body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           padding: const EdgeInsets.all(20),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Sign Up',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 20),
-                buildName(),
-                const SizedBox(height: 10),
-                buildEmail(),
-                const SizedBox(height: 10),
-                buildPassword(),
-                const SizedBox(height: 20),
-                buildSignUpBtn(),
-                buildLogIn()
-              ])),
+          child: Column(children: [
+            const Text(
+              'Sign Up',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            buildName(),
+            const SizedBox(height: 10),
+            buildEmail(),
+            const SizedBox(height: 10),
+            buildPassword(),
+            const SizedBox(height: 20),
+            buildSignUpBtn(),
+            buildLogIn()
+          ])),
     );
   }
 
