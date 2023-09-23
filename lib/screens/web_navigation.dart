@@ -1,15 +1,17 @@
-import 'package:cp3405_project/widgets/pomodoro_widget.dart';
 import 'package:flutter/material.dart';
 
-class ColourChange extends StatefulWidget {
-  const ColourChange({super.key});
+enum SampleItem { logout }
+
+class WebNavigation extends StatefulWidget {
+  WebNavigation({super.key});
 
   @override
-  State<ColourChange> createState() => _ColourChangeState();
+  State<WebNavigation> createState() => _WebNavigationState();
 }
 
-class _ColourChangeState extends State<ColourChange> {
+class _WebNavigationState extends State<WebNavigation> {
   int _selectedIndex = 0;
+  SampleItem? selectedMenu;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -17,23 +19,39 @@ class _ColourChangeState extends State<ColourChange> {
     });
   }
 
+  void _handleLogout() {
+    debugPrint('Logout');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.red,
-            title: const Text('Colour Change'),
+            title: const Text('Web Navigation'),
             actions: [
               IconButton(
-                  onPressed: () {
-                    debugPrint('Logout pressed!');
-                  },
-                  icon: const Icon(Icons.logout)),
-              IconButton(
+                  icon: const Icon(Icons.settings),
                   onPressed: () {
                     debugPrint('Settings pressed!');
-                  },
-                  icon: const Icon(Icons.settings))
+                    showMenu<SampleItem>(
+                      context: context,
+                      position: RelativeRect.fromLTRB(0, kToolbarHeight, 0, 0),
+                      items: [
+                        PopupMenuItem<SampleItem>(
+                            child: Text('Logout'), value: SampleItem.logout),
+                      ],
+                    ).then((value) {
+                      if (value != null) {
+                        setState(() {
+                          selectedMenu = value;
+                          if (value == SampleItem.logout) {
+                            _handleLogout();
+                          }
+                        });
+                      }
+                    });
+                  })
             ]),
         drawer: Drawer(
           child: ListView(
@@ -118,7 +136,6 @@ class _ColourChangeState extends State<ColourChange> {
                 style: TextStyle(fontSize: 24),
               ),
               Text('Your phone must be idle to restore health!'),
-              PomodoroWidget(),
             ],
           ),
         ));
