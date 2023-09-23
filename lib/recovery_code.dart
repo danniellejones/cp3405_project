@@ -1,3 +1,4 @@
+import 'package:cp3405_project/reset_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_verification_code/flutter_verification_code.dart';
 
@@ -52,7 +53,10 @@ class _RecoveryCodePageState extends State<RecoveryCodePage> {
       width: double.infinity,
       alignment: Alignment.center,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => ResetPasswordPage()));
+        },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue,
             elevation: 5,
@@ -77,7 +81,7 @@ class _RecoveryCodePageState extends State<RecoveryCodePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Forgot Password?',
+              'Verification',
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 40,
