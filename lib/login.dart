@@ -139,7 +139,13 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   const Spacer(),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  ForgotPasswordPage()));
+                                    },
                                     child: const Text(
                                       'Forgot Password?',
                                       style: TextStyle(
