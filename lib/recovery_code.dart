@@ -33,11 +33,22 @@ class _RecoveryCodePageState extends State<RecoveryCodePage> {
 
   Widget buildResendCode() {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      const Text('Did\'t receive OTP?'),
+      const Text('Did\'t receive recovery code?'),
       TextButton(
-        onPressed: () {
-          // Resent the code
-        },
+        onPressed: () => showDialog(
+            context: context,
+            builder: ((context) => AlertDialog(
+                  title: const Text(
+                    'Re-sent recovery code',
+                  ),
+                  content: const Text(
+                      'Never fear!\nWe re-sent you a new recovery code.\nPlease check your email.'),
+                  actions: <Widget>[
+                    TextButton(
+                        onPressed: () => Navigator.pop(context, 'Okay'),
+                        child: const Text('Okay')),
+                  ],
+                ))),
         child: const Text(
           'Resend code',
           style: TextStyle(
