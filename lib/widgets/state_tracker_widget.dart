@@ -23,7 +23,7 @@ class StateTrackerWidget extends StatelessWidget {
 
   Widget _buildState(imagePath, stateHeader, stateCount) {
     return SizedBox(
-      height: 100,
+      height: 80,
       child: Row(
         children: [
           Image.asset(imagePath),

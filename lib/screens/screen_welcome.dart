@@ -1,4 +1,4 @@
-import 'package:cp3405_project/screens/base_nav_widget.dart';
+import 'package:cp3405_project/screens/nav_base_widget.dart';
 import 'package:cp3405_project/widgets/pomodoro_widget.dart';
 import 'package:cp3405_project/widgets/state_tracker_widget.dart';
 import 'package:cp3405_project/widgets/title_widget.dart';
@@ -13,6 +13,8 @@ class WelcomeScreen extends StatelessWidget {
     // PomodoroWidget(),
     // StateTrackerWidget(),
     // ]);
-    return const TitleWidget();
+    return const TitleWidget(
+      isLoggedIn: false,
+    );
   }
 }

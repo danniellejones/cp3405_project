@@ -1,5 +1,7 @@
-import 'package:cp3405_project/screens/base_nav_widget.dart';
+import 'package:cp3405_project/screens/nav_base_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:cp3405_project/widgets/pomodoro_widget.dart';
+import 'package:cp3405_project/widgets/state_tracker_widget.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -9,7 +11,8 @@ class LoginScreen extends StatelessWidget {
     return const BaseNavigationWidget(
       title: 'Login',
       content: [
-        Text('Login Page'),
+        PomodoroWidget(),
+        StateTrackerWidget(),
       ],
     );
   }

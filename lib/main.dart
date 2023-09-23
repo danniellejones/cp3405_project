@@ -1,6 +1,6 @@
-import 'package:cp3405_project/screens/base_nav_widget.dart';
-import 'package:cp3405_project/screens/welcome_screen.dart';
-import 'package:cp3405_project/screens/login_screen.dart';
+import 'package:cp3405_project/screens/nav_base_widget.dart';
+import 'package:cp3405_project/screens/screen_welcome.dart';
+import 'package:cp3405_project/screens/screen_login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
         // Screens for navigation
         '/': (context) => const WelcomeScreen(),
         '/login': (context) => const LoginScreen(),
+        '/signUp': (context) => const LoginScreen(),
         '/forgotPassword': (context) => const LoginScreen(),
         '/teacherLanding': (context) => const LoginScreen(),
         '/studentLanding': (context) => const LoginScreen(),

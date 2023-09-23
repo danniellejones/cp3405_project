@@ -1,5 +1,5 @@
-import 'package:cp3405_project/screens/mobile_nav_widget.dart';
-import 'package:cp3405_project/screens/web_nav_widget.dart';
+import 'package:cp3405_project/screens/nav_mobile_widget.dart';
+import 'package:cp3405_project/screens/nav_web_widget.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
