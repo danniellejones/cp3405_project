@@ -1,4 +1,6 @@
 
+import 'package:cp3405_project/screens/screen_welcome.dart';
+import 'package:cp3405_project/screens/screen_login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -68,6 +70,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -87,7 +90,24 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // Start Route
+      initialRoute: '/',
+      routes: {
+        // Screens for navigation
+        '/': (context) => const WelcomeScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/signUp': (context) => const LoginScreen(),
+        '/forgotPassword': (context) => const LoginScreen(),
+        '/teacherLanding': (context) => const LoginScreen(),
+        '/studentLanding': (context) => const WelcomeScreen(),
+        '/questBoard': (context) => const LoginScreen(),
+        '/questPlanner': (context) => const LoginScreen(),
+        '/avatar': (context) => const LoginScreen(),
+        '/metrics': (context) => const LoginScreen(),
+        '/classView': (context) => const LoginScreen(),
+        '/classBoard': (context) => const LoginScreen(),
+      },
+      // home: const MyScreen(),
     );
   }
 }
