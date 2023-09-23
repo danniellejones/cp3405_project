@@ -9,9 +9,6 @@ class ResetPasswordPage extends StatefulWidget {
 }
 
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
-  var newPasswordController = TextEditingController();
-  var confirmNewPasswordController = TextEditingController();
-
   Widget buildPassword() {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,30 +61,5 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('World of Schoolcraft')),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Reset Password',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 50),
-            buildPassword(),
-            const SizedBox(height: 20),
-            buildSubmitBtn()
-          ],
-        ),
-      ),
-    );
-  }
+  Widget build(BuildContext context) {}
 }
