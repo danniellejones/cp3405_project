@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -56,10 +55,12 @@ class _PomodoroWidgetState extends State<PomodoroWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(onPressed: startTimer, child: const Text('Start')),
               ElevatedButton(onPressed: resetTimer, child: const Text('Reset')),
@@ -67,26 +68,32 @@ class _PomodoroWidgetState extends State<PomodoroWidget> {
                   onPressed: removeHeart, child: const Text('Remove')),
             ],
           ),
-          Center(
-            child: CircularPercentIndicator(
-              percent: percentage,
-              animation: true,
-              animateFromLastPercent: true,
-              lineWidth: 20.0,
-              radius: 100.0,
-              center: Text(
-                "$seconds",
-                style: const TextStyle(fontSize: 40),
-              ),
+          CircularPercentIndicator(
+            percent: percentage,
+            animation: true,
+            animateFromLastPercent: true,
+            lineWidth: 20.0,
+            radius: 100.0,
+            center: Text(
+              "$seconds",
+              style: const TextStyle(fontSize: 40),
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: hearts,
-                itemBuilder: (BuildContext context, index) {
-                  return const Icon(Icons.heart_broken);
-                }),
+          Center(
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width / 2,
+              child: GridView.builder(
+                  // scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: maxHearts,
+                      mainAxisSpacing: 0,
+                      crossAxisSpacing: 0),
+                  itemCount: hearts,
+                  itemBuilder: (BuildContext context, index) {
+                    return const Icon(Icons.heart_broken);
+                  }),
+            ),
           ),
           const Text(
             'Greyscale Meter',
