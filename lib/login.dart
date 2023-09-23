@@ -3,9 +3,9 @@ import 'package:cp3405_project/signup.dart';
 import 'package:flutter/material.dart';
 
 // Remember to delete this when further into development
-void main() {
-  runApp(const MaterialApp(home: LoginPage()));
-}
+// void main() {
+//   runApp(const MaterialApp(home: LoginPage()));
+// }
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
