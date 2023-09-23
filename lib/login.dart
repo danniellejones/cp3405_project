@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           SizedBox(height: 30),
                           Text(
-                              'Embark on Your Academic Adventure \nSign in and Explore the Depths of Knowledge!',
+                              'Embark on Your Academic Adventure \nSign in and explore the Depths of Knowledge!',
                               style:
                                   TextStyle(fontSize: 20, color: Colors.grey)),
                           SizedBox(height: 20),
@@ -156,7 +156,12 @@ class _LoginPageState extends State<LoginPage> {
                                 children: [
                                   const Text('Don\'t have an account?'),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => SignUpPage()));
+                                    },
                                     child: const Text(
                                       'Sign up',
                                       style: TextStyle(

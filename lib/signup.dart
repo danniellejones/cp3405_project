@@ -1,4 +1,5 @@
 import 'package:cp3405_project/login.dart';
+import 'package:cp3405_project/responsive_layout.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -9,76 +10,21 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  var firstNameController = TextEditingController();
-  var lastNameController = TextEditingController();
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-  var confirmPasswordController = TextEditingController();
-
   bool validate = false;
-
-  Widget buildName() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        TextField(
-          decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              prefixIcon: const Icon(Icons.person),
-              hintText: 'First name',
-              errorText: validate ? 'Please enter first name' : null),
-          textAlign: TextAlign.left,
-          keyboardType: TextInputType.text,
-          controller: firstNameController,
-        ),
-        const SizedBox(height: 10),
-        TextField(
-          decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              prefixIcon: const Icon(Icons.person),
-              hintText: 'Last name',
-              errorText: validate ? 'Please enter last name' : null),
-          textAlign: TextAlign.left,
-          keyboardType: TextInputType.text,
-          controller: lastNameController,
-        )
-      ],
-    );
-  }
-
-  Widget buildEmail() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        TextField(
-          decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              prefixIcon: const Icon(Icons.email),
-              hintText: 'Email',
-              errorText: validate ? 'Please enter email' : null),
-          textAlign: TextAlign.left,
-          keyboardType: TextInputType.text,
-          controller: emailController,
-        )
-      ],
-    );
-  }
 
   Widget buildPassword() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TextField(
-          obscureText: true,
-          decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              prefixIcon: const Icon(Icons.lock),
-              hintText: 'Enter password',
-              errorText: validate ? 'Please enter password' : null),
-          textAlign: TextAlign.left,
-          keyboardType: TextInputType.text,
-          controller: passwordController,
-        ),
+            obscureText: true,
+            decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                prefixIcon: const Icon(Icons.lock),
+                hintText: 'Enter password',
+                errorText: validate ? 'Please enter password' : null),
+            textAlign: TextAlign.left,
+            keyboardType: TextInputType.text),
         const SizedBox(height: 10),
         TextField(
           obscureText: true,
@@ -89,7 +35,6 @@ class _SignUpPageState extends State<SignUpPage> {
               errorText: validate ? 'Please enter password' : null),
           textAlign: TextAlign.left,
           keyboardType: TextInputType.text,
-          controller: confirmPasswordController,
         )
       ],
     );
@@ -102,21 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
       alignment: Alignment.center,
       child: ElevatedButton(
         onPressed: () {
-          setState(() {
-            firstNameController.text.isEmpty
-                ? validate = true
-                : validate = false;
-            lastNameController.text.isEmpty
-                ? validate = true
-                : validate = false;
-            emailController.text.isEmpty ? validate = true : validate = false;
-            passwordController.text.isEmpty
-                ? validate = true
-                : validate = false;
-            confirmPasswordController.text.isEmpty
-                ? validate = true
-                : validate = false;
-          });
+          setState(() {});
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue,
@@ -153,41 +84,116 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('World of Schoolcraft'),
-      ),
-      body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          padding: const EdgeInsets.all(20),
-          child: Column(children: [
-            const Text(
-              'Sign Up',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 20),
-            buildName(),
-            const SizedBox(height: 10),
-            buildEmail(),
-            const SizedBox(height: 10),
-            buildPassword(),
-            const SizedBox(height: 20),
-            buildSignUpBtn(),
-            buildLogIn()
-          ])),
-    );
-  }
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
-  @override
-  void dispose() {
-    super.dispose();
-    firstNameController.dispose();
-    lastNameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    confirmPasswordController.dispose();
+    return Scaffold(
+        body: SizedBox(
+      height: height,
+      width: width,
+      child: SingleChildScrollView(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ResponsiveLayout.isMobileScreen(context)
+                ? const SizedBox()
+                : Expanded(
+                    // Left side of screen
+                    child: Container(
+                      height: height,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                                'lib/assets/images/img_classroom.png'),
+                            fit: BoxFit.fill),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'World of Schoolcraft',
+                          style: TextStyle(
+                              fontSize: 48.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+
+            // Right side of screen
+            Expanded(
+                child: Container(
+                    padding: EdgeInsets.all(20),
+                    height: height,
+                    color: Colors.white,
+                    child: Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(height: height * 0.2),
+                          Text(
+                            'Sign up',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 34.0),
+                          ),
+                          SizedBox(height: 30),
+                          Text(
+                              'It\'s time to embark on Your Academic Adventure!\nSign up and discover the Depths of Knowledge!',
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.grey)),
+                          SizedBox(height: 20),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  TextField(
+                                    decoration: InputDecoration(
+                                        border: const OutlineInputBorder(),
+                                        prefixIcon: const Icon(Icons.person),
+                                        hintText: 'First name',
+                                        errorText: validate
+                                            ? 'Please enter first name'
+                                            : null),
+                                    textAlign: TextAlign.left,
+                                    keyboardType: TextInputType.text,
+                                  ),
+                                  const SizedBox(height: 10),
+                                  TextField(
+                                    decoration: InputDecoration(
+                                        border: const OutlineInputBorder(),
+                                        prefixIcon: const Icon(Icons.person),
+                                        hintText: 'Last name',
+                                        errorText: validate
+                                            ? 'Please enter last name'
+                                            : null),
+                                    textAlign: TextAlign.left,
+                                    keyboardType: TextInputType.text,
+                                  ),
+                                  const SizedBox(height: 10),
+                                  TextField(
+                                    decoration: InputDecoration(
+                                        border: const OutlineInputBorder(),
+                                        prefixIcon: const Icon(Icons.email),
+                                        hintText: 'Email',
+                                        errorText: validate
+                                            ? 'Please enter email'
+                                            : null),
+                                    textAlign: TextAlign.left,
+                                    keyboardType: TextInputType.text,
+                                  )
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    )))
+          ],
+        ),
+      ),
+    ));
   }
 }
