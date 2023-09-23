@@ -10,50 +10,7 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  var emailController = TextEditingController();
-
   bool validate = false;
-
-  Widget buildEmail() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        TextField(
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            prefixIcon: Icon(Icons.email),
-            hintText: 'Email',
-          ),
-          textAlign: TextAlign.left,
-          keyboardType: TextInputType.emailAddress,
-          controller: emailController,
-        )
-      ],
-    );
-  }
-
-  Widget buildSendCodeBtn() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 25),
-      width: double.infinity,
-      alignment: Alignment.center,
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (_) => const RecoveryCodePage()));
-        },
-        style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            elevation: 5,
-            minimumSize: const Size.fromHeight(50)),
-        child: const Text(
-          'Send code',
-          style: TextStyle(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,40 +77,35 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               TextField(
-                                  decoration: InputDecoration(
-                                    border: const OutlineInputBorder(),
-                                    prefixIcon: const Icon(Icons.email),
-                                    hintText: 'Email',
-                                  ),
-                                  textAlign: TextAlign.left,
-                                  keyboardType: TextInputType.emailAddress),
-                              SizedBox(height: 10),
-                              TextField(
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                    border: const OutlineInputBorder(),
-                                    prefixIcon: const Icon(Icons.lock),
-                                    hintText: 'Enter password'),
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  prefixIcon: Icon(Icons.email),
+                                  hintText: 'Email',
+                                ),
                                 textAlign: TextAlign.left,
-                                keyboardType: TextInputType.text,
+                                keyboardType: TextInputType.emailAddress,
                               ),
                               SizedBox(height: 20),
                               ElevatedButton(
                                 onPressed: () {
-                                  setState(() {});
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) =>
+                                              const RecoveryCodePage()));
                                 },
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.blue,
                                     elevation: 5,
                                     minimumSize: const Size.fromHeight(50)),
                                 child: const Text(
-                                  'Login',
+                                  'Send code',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),
-                              ),
+                              )
                             ],
                           )
                         ],
