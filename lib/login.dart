@@ -1,3 +1,4 @@
+import 'package:cp3405_project/ForgotPassword.dart';
 import 'package:cp3405_project/signup.dart';
 import 'package:flutter/material.dart';
 
@@ -128,7 +129,10 @@ class _LoginPageState extends State<LoginPage> {
         ),
         const Spacer(),
         TextButton(
-          onPressed: () => print('Forgot button pressed'),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const ForgotPasswordPage()));
+          },
           child: const Text(
             'Forgot Password?',
             style: TextStyle(
