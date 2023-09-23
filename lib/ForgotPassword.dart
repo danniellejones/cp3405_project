@@ -91,6 +91,25 @@ class RecoveryCodePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('World of Schoolcraft')),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Forgot Password?',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 50),
+            Text(
+                'We sent you a recovery code, enter it below.\n\nRecovery code was sent to your_email@example.com')
+          ],
+        ),
+      ),
     );
   }
 }
