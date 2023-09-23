@@ -1,18 +1,58 @@
 import 'package:flutter/material.dart';
 
-Widget buildEmail(){
-  return Column( 
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        'Email'
-      )
-    ],
-  )
+class ForgotPasswordPage extends StatefulWidget {
+  const ForgotPasswordPage({super.key});
+
+  @override
+  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
 }
 
-class ForgotPasswordPage extends StatelessWidget {
-  const ForgotPasswordPage({super.key});
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+  var emailController = TextEditingController();
+
+  bool validate = false;
+
+  Widget buildEmail() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        TextField(
+          decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              prefixIcon: Icon(Icons.email),
+              hintText: 'Email',
+              errorText: validate ? 'Please enter email' : null),
+          textAlign: TextAlign.left,
+          keyboardType: TextInputType.emailAddress,
+          controller: emailController,
+        )
+      ],
+    );
+  }
+
+  Widget buildSendCodeBtn() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 25),
+      width: double.infinity,
+      alignment: Alignment.center,
+      child: ElevatedButton(
+        onPressed: () {
+          setState(() {
+            emailController.text.isEmpty ? validate = true : validate = false;
+          });
+        },
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue,
+            elevation: 5,
+            minimumSize: const Size.fromHeight(50)),
+        child: const Text(
+          'Send code',
+          style: TextStyle(
+              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +72,14 @@ class ForgotPasswordPage extends StatelessWidget {
                   color: Colors.black,
                   fontSize: 40,
                   fontWeight: FontWeight.bold),
-            ), 
-            SizedBox(height: 50), 
-            Text(
-              'Don\t worry! Just enter your account email and we will send you a recovery code.'
             ),
             SizedBox(height: 50),
+            Text(
+                'Don\t worry! Just enter your account email and we will send you a recovery code.'),
+            SizedBox(height: 50),
             buildEmail(),
+            SizedBox(height: 20),
+            buildSendCodeBtn()
           ],
         ),
       ),
