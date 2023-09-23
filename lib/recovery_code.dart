@@ -56,8 +56,8 @@ class _RecoveryCodePageState extends State<RecoveryCodePage> {
       alignment: Alignment.center,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => ResetPasswordPage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const ResetPasswordPage()));
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue,
@@ -78,6 +78,7 @@ class _RecoveryCodePageState extends State<RecoveryCodePage> {
       appBar: AppBar(title: const Text('World of Schoolcraft')),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,

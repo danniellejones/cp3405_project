@@ -27,10 +27,11 @@ class _LoginPageState extends State<LoginPage> {
       children: <Widget>[
         TextField(
           decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              prefixIcon: const Icon(Icons.person),
-              hintText: 'Email',
-              errorText: validate ? 'Please enter email' : null),
+            border: const OutlineInputBorder(),
+            prefixIcon: const Icon(Icons.person),
+            hintText: 'Email',
+            errorText: validate ? 'Please enter email' : null,
+          ),
           textAlign: TextAlign.left,
           keyboardType: TextInputType.emailAddress,
           controller: emailController,
@@ -152,6 +153,7 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(title: const Text('World of Schoolcraft')),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

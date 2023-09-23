@@ -69,6 +69,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       appBar: AppBar(title: const Text('World of Schoolcraft')),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
