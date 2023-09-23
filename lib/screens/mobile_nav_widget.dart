@@ -18,6 +18,7 @@ class MobileNavigationWidget extends StatelessWidget {
       appBar: CommonAppBar(title: title),
       body: ListView(
         children: content,
+        padding: EdgeInsets.all(5),
       ),
       bottomNavigationBar: const MobileBottomNavBar(),
     );
