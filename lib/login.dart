@@ -27,8 +27,8 @@ class _LoginPageState extends State<LoginPage> {
       children: <Widget>[
         TextField(
           decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.person),
+              border: const OutlineInputBorder(),
+              prefixIcon: const Icon(Icons.person),
               hintText: 'Email',
               errorText: validate ? 'Please enter email' : null),
           textAlign: TextAlign.left,
@@ -46,8 +46,8 @@ class _LoginPageState extends State<LoginPage> {
         TextField(
           obscureText: true,
           decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.lock),
+              border: const OutlineInputBorder(),
+              prefixIcon: const Icon(Icons.lock),
               hintText: 'Enter password',
               errorText: validate ? 'Please enter password' : null),
           textAlign: TextAlign.left,

@@ -1,8 +1,19 @@
+import 'package:cp3405_project/login.dart';
 import 'package:flutter/material.dart';
 
-class ResetPasswordPage extends StatelessWidget {
+class ResetPasswordPage extends StatefulWidget {
+  const ResetPasswordPage({super.key});
+
+  @override
+  State<ResetPasswordPage> createState() => _ResetPasswordPageState();
+}
+
+class _ResetPasswordPageState extends State<ResetPasswordPage> {
+  var newPasswordController = TextEditingController();
+  var confirmNewPasswordController = TextEditingController();
+
   Widget buildPassword() {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TextField(
@@ -35,7 +46,10 @@ class ResetPasswordPage extends StatelessWidget {
       width: double.infinity,
       alignment: Alignment.center,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => const LoginPage()));
+        },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue,
             elevation: 5,
@@ -52,23 +66,23 @@ class ResetPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('World of Schoolcraft')),
+      appBar: AppBar(title: const Text('World of Schoolcraft')),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Reset Password',
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 40,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             buildPassword(),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             buildSubmitBtn()
           ],
         ),

@@ -18,7 +18,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         TextField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             border: OutlineInputBorder(),
             prefixIcon: Icon(Icons.email),
             hintText: 'Email',
@@ -38,8 +38,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       alignment: Alignment.center,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => RecoveryCodePage()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const RecoveryCodePage()));
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue,
@@ -66,19 +66,19 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Forgot Password?',
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 40,
                   fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 50),
-            Text(
+            const SizedBox(height: 50),
+            const Text(
                 'Don\'t worry! Just enter your account email and we will send you a recovery code.'),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             buildEmail(),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             buildSendCodeBtn()
           ],
         ),

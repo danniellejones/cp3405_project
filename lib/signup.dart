@@ -23,19 +23,19 @@ class _SignUpPageState extends State<SignUpPage> {
       children: <Widget>[
         TextField(
           decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.person),
+              border: const OutlineInputBorder(),
+              prefixIcon: const Icon(Icons.person),
               hintText: 'First name',
               errorText: validate ? 'Please enter first name' : null),
           textAlign: TextAlign.left,
           keyboardType: TextInputType.text,
           controller: firstNameController,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
           decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.person),
+              border: const OutlineInputBorder(),
+              prefixIcon: const Icon(Icons.person),
               hintText: 'Last name',
               errorText: validate ? 'Please enter last name' : null),
           textAlign: TextAlign.left,
@@ -52,8 +52,8 @@ class _SignUpPageState extends State<SignUpPage> {
       children: <Widget>[
         TextField(
           decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.email),
+              border: const OutlineInputBorder(),
+              prefixIcon: const Icon(Icons.email),
               hintText: 'Email',
               errorText: validate ? 'Please enter email' : null),
           textAlign: TextAlign.left,
@@ -71,20 +71,20 @@ class _SignUpPageState extends State<SignUpPage> {
         TextField(
           obscureText: true,
           decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.lock),
+              border: const OutlineInputBorder(),
+              prefixIcon: const Icon(Icons.lock),
               hintText: 'Enter password',
               errorText: validate ? 'Please enter password' : null),
           textAlign: TextAlign.left,
           keyboardType: TextInputType.text,
           controller: passwordController,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         TextField(
           obscureText: true,
           decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.lock),
+              border: const OutlineInputBorder(),
+              prefixIcon: const Icon(Icons.lock),
               hintText: 'Confirm password',
               errorText: validate ? 'Please enter password' : null),
           textAlign: TextAlign.left,
@@ -139,7 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
         TextButton(
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (_) => LoginPage()));
+                context, MaterialPageRoute(builder: (_) => const LoginPage()));
           },
           child: const Text(
             'Log in',
