@@ -18,10 +18,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       children: <Widget>[
         TextField(
           decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.email),
-              hintText: 'Email',
-              errorText: validate ? 'Please enter email' : null),
+            border: OutlineInputBorder(),
+            prefixIcon: Icon(Icons.email),
+            hintText: 'Email',
+          ),
           textAlign: TextAlign.left,
           keyboardType: TextInputType.emailAddress,
           controller: emailController,
@@ -37,9 +37,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       alignment: Alignment.center,
       child: ElevatedButton(
         onPressed: () {
-          setState(() {
-            emailController.text.isEmpty ? validate = true : validate = false;
-          });
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => RecoveryCodePage()));
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue,
@@ -75,7 +74,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             ),
             SizedBox(height: 50),
             Text(
-                'Don\t worry! Just enter your account email and we will send you a recovery code.'),
+                'Don\'t worry! Just enter your account email and we will send you a recovery code.'),
             SizedBox(height: 50),
             buildEmail(),
             SizedBox(height: 20),
@@ -83,6 +82,15 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class RecoveryCodePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('World of Schoolcraft')),
     );
   }
 }
