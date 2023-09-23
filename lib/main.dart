@@ -1,3 +1,6 @@
+import 'package:cp3405_project/screens/base_nav_widget.dart';
+import 'package:cp3405_project/screens/welcome_screen.dart';
+import 'package:cp3405_project/screens/second_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,6 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -31,7 +35,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // Start Route
+      initialRoute: '/',
+      routes: {
+        // Screens for navigation
+        '/': (context) => const WelcomeScreen(),
+        '/second': (context) => const SecondScreen(),
+      },
+      // home: const MyScreen(),
     );
   }
 }

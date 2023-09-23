@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 enum SampleItem { logout }
 
-class WebNavigation extends StatefulWidget {
-  WebNavigation({super.key});
+class WebNavigationWidget extends StatefulWidget {
+  WebNavigationWidget({super.key});
 
   @override
-  State<WebNavigation> createState() => _WebNavigationState();
+  State<WebNavigationWidget> createState() => _WebNavigationWidgetState();
 }
 
-class _WebNavigationState extends State<WebNavigation> {
+class _WebNavigationWidgetState extends State<WebNavigationWidget> {
   int _selectedIndex = 0;
   SampleItem? selectedMenu;
 
