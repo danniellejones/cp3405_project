@@ -8,12 +8,25 @@ class MobileBottomNavBar extends StatefulWidget {
 }
 
 class _MobileBottomNavBarState extends State<MobileBottomNavBar> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+    switch (_selectedIndex) {
+      case 0:
+        Navigator.pushNamed(context, '/avatar');
+        break;
+      case 1:
+        Navigator.pushNamed(context, '/studentLanding');
+        break;
+      case 3:
+        Navigator.pushNamed(context, '/questBoard');
+        break;
+      default:
+        Navigator.pushNamed(context, '/');
+    }
   }
 
   @override
@@ -21,17 +34,23 @@ class _MobileBottomNavBarState extends State<MobileBottomNavBar> {
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: 'Avatar',
+        ),
+        BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Avatar',
+          icon: Icon(Icons.flag),
+          label: 'Quests',
         ),
-        BottomNavigationBarItem(icon: Icon(Icons.computer), label: 'Board')
       ],
       currentIndex: _selectedIndex,
-      selectedItemColor: Colors.amber,
+      selectedItemColor: Colors.red,
+      unselectedItemColor: Colors.blueGrey,
+      unselectedLabelStyle: const TextStyle(color: Colors.blueGrey),
+      selectedLabelStyle: const TextStyle(color: Colors.red),
       onTap: _onItemTapped,
     );
   }

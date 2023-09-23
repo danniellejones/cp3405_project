@@ -3,63 +3,62 @@ import 'package:flutter/material.dart';
 enum SampleItem { logout }
 
 class DrawerNavigationWidget extends StatefulWidget {
-  const DrawerNavigationWidget({super.key});
+  final String userName;
+  final String email;
+
+  const DrawerNavigationWidget({
+    super.key,
+    this.userName = 'Username',
+    this.email = 'your_email@example.com',
+  });
 
   @override
   State<DrawerNavigationWidget> createState() => _DrawerNavigationWidgetState();
 }
 
 class _DrawerNavigationWidgetState extends State<DrawerNavigationWidget> {
+  Widget _buildDrawerItem(icon, name, context, routeName) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(name),
+      onTap: () {
+        Navigator.pushNamed(context, routeName);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
-        children: const <Widget>[
+        children: <Widget>[
           DrawerHeader(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.blue,
             ),
             child: Column(children: [
-              Icon(Icons.person_2),
+              const Icon(Icons.person_2),
               Text(
-                'Username',
-                style: TextStyle(
+                widget.userName,
+                style: const TextStyle(
                   fontSize: 24,
                 ),
               ),
               Text(
-                'Email',
-                style: TextStyle(
+                widget.email,
+                style: const TextStyle(
                   fontSize: 16,
                 ),
               ),
             ]),
           ),
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text("Home"),
-          ),
-          ListTile(
-            leading: Icon(Icons.class_),
-            title: Text("Class Overview"),
-          ),
-          ListTile(
-            leading: Icon(Icons.map),
-            title: Text("Quest Planner"),
-          ),
-          ListTile(
-            leading: Icon(Icons.graphic_eq),
-            title: Text("Metrics"),
-          ),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text("Settings"),
-          ),
-          ListTile(
-            leading: Icon(Icons.logout),
-            title: Text("Logout"),
-          ),
+          _buildDrawerItem(Icons.home, 'Dashboard', context, '/teacherLanding'),
+          _buildDrawerItem(Icons.class_, 'Class View', context, '/classView'),
+          _buildDrawerItem(
+              Icons.map, 'Quest Planner', context, '/questPlanner'),
+          _buildDrawerItem(Icons.graphic_eq, 'Metrics', context, '/metrics'),
+          _buildDrawerItem(Icons.logout, 'Logout', context, '/'),
         ],
       ),
     );

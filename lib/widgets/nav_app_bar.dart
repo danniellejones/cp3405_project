@@ -20,6 +20,7 @@ class _CommonAppBarState extends State<CommonAppBar> {
 
   void _handleLogout() {
     debugPrint('Logout');
+    Navigator.pushReplacementNamed(context, '/login');
   }
 
   @override
