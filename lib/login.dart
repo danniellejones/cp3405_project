@@ -24,6 +24,7 @@ class _LoginPageState extends State<LoginPage> {
       height: height,
       width: width,
       child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -63,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SizedBox(height: height * 0.2),
+                          SizedBox(height: height * 0.1),
                           Text(
                             'Login',
                             style: TextStyle(
