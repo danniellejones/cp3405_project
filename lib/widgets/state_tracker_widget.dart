@@ -3,25 +3,43 @@ import 'package:flutter/material.dart';
 class StateTrackerWidget extends StatelessWidget {
   const StateTrackerWidget({super.key});
 
+  Widget _buildHeader(headerTitle, headerInfo) {
+    return Row(
+      children: [
+        Text(
+          headerTitle,
+          style: const TextStyle(fontSize: 24),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Tooltip(
+            message: headerInfo,
+            child: const Icon(Icons.info_outline),
+          ),
+        )
+      ],
+    );
+  }
+
   Widget _buildState(imagePath, stateHeader, stateCount) {
     return SizedBox(
       height: 100,
       child: Row(
         children: [
           Image.asset(imagePath),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Idle',
-                  style: TextStyle(
+                  stateHeader,
+                  style: const TextStyle(
                     fontSize: 18,
                   ),
                 ),
-                Text('12',
-                    style: TextStyle(
+                Text('$stateCount',
+                    style: const TextStyle(
                       fontSize: 24,
                     )),
               ],
@@ -35,14 +53,9 @@ class StateTrackerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      Row(
-        children: [
-          const Text(
-            'State Tracker',
-            style: TextStyle(fontSize: 24),
-          ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.info)),
-        ],
+      _buildHeader(
+        'State Tracker',
+        'Shows if students are idle, in-app, or distracted.',
       ),
       Row(
         children: [
