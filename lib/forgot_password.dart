@@ -38,7 +38,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                 'lib/assets/images/img_classroom.png'),
                             fit: BoxFit.fill),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'World of Schoolcraft',
                           style: TextStyle(
@@ -53,7 +53,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             // Right side of screen
             Expanded(
                 child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     height: height,
                     color: Colors.white,
                     child: Center(
@@ -61,23 +61,23 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SizedBox(height: height * 0.2),
-                          Text(
+                          SizedBox(height: height * 0.1),
+                          const Text(
                             'Forgot Password?',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 34.0),
                           ),
-                          SizedBox(height: 30),
-                          Text(
+                          const SizedBox(height: 30),
+                          const Text(
                               'Enter your email to send a special code to recover your account',
                               style:
                                   TextStyle(fontSize: 20, color: Colors.grey)),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              TextField(
-                                decoration: const InputDecoration(
+                              const TextField(
+                                decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   prefixIcon: Icon(Icons.email),
                                   hintText: 'Email',

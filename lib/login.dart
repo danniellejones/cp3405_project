@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                                 'lib/assets/images/img_classroom.png'),
                             fit: BoxFit.fill),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'World of Schoolcraft',
                           style: TextStyle(
@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
             // Right side of screen
             Expanded(
                 child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     height: height,
                     color: Colors.white,
                     child: Center(
@@ -65,39 +65,39 @@ class _LoginPageState extends State<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(height: height * 0.1),
-                          Text(
+                          const Text(
                             'Login',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 34.0),
                           ),
-                          SizedBox(height: 30),
-                          Text(
+                          const SizedBox(height: 30),
+                          const Text(
                               'Embark on Your Academic Adventure \nSign in and explore the Depths of Knowledge!',
                               style:
                                   TextStyle(fontSize: 20, color: Colors.grey)),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              TextField(
+                              const TextField(
                                   decoration: InputDecoration(
-                                    border: const OutlineInputBorder(),
-                                    prefixIcon: const Icon(Icons.email),
+                                    border: OutlineInputBorder(),
+                                    prefixIcon: Icon(Icons.email),
                                     hintText: 'Email',
                                   ),
                                   textAlign: TextAlign.left,
                                   keyboardType: TextInputType.emailAddress),
-                              SizedBox(height: 10),
-                              TextField(
+                              const SizedBox(height: 10),
+                              const TextField(
                                 obscureText: true,
                                 decoration: InputDecoration(
-                                    border: const OutlineInputBorder(),
-                                    prefixIcon: const Icon(Icons.lock),
+                                    border: OutlineInputBorder(),
+                                    prefixIcon: Icon(Icons.lock),
                                     hintText: 'Enter password'),
                                 textAlign: TextAlign.left,
                                 keyboardType: TextInputType.text,
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               ElevatedButton(
                                 onPressed: () {
                                   setState(() {});
@@ -114,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Row(
                                 children: [
                                   Theme(
@@ -145,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (_) =>
-                                                  ForgotPasswordPage()));
+                                                  const ForgotPasswordPage()));
                                     },
                                     child: const Text(
                                       'Forgot Password?',
@@ -157,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -167,7 +167,8 @@ class _LoginPageState extends State<LoginPage> {
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (_) => SignUpPage()));
+                                              builder: (_) =>
+                                                  const SignUpPage()));
                                     },
                                     child: const Text(
                                       'Sign up',

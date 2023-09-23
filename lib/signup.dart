@@ -38,7 +38,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 'lib/assets/images/img_classroom.png'),
                             fit: BoxFit.fill),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'World of Schoolcraft',
                           style: TextStyle(
@@ -53,7 +53,7 @@ class _SignUpPageState extends State<SignUpPage> {
             // Right side of screen
             Expanded(
                 child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     height: height,
                     color: Colors.white,
                     child: Center(
@@ -62,17 +62,17 @@ class _SignUpPageState extends State<SignUpPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(height: height * 0.1),
-                          Text(
+                          const Text(
                             'Sign up',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 34.0),
                           ),
-                          SizedBox(height: 30),
-                          Text(
+                          const SizedBox(height: 30),
+                          const Text(
                               'It\'s time to embark on Your Academic Adventure!\nSign up and discover the Depths of Knowledge!',
                               style:
                                   TextStyle(fontSize: 20, color: Colors.grey)),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -139,7 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     textAlign: TextAlign.left,
                                     keyboardType: TextInputType.text,
                                   ),
-                                  SizedBox(height: 10),
+                                  const SizedBox(height: 10),
                                   ElevatedButton(
                                     onPressed: () {
                                       setState(() {});
@@ -156,7 +156,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-                                  SizedBox(height: 10),
+                                  const SizedBox(height: 10),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [

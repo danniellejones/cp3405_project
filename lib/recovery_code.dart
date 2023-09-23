@@ -37,7 +37,7 @@ class _RecoveryCodePageState extends State<RecoveryCodePage> {
                                 'lib/assets/images/img_classroom.png'),
                             fit: BoxFit.fill),
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
                           'World of Schoolcraft',
                           style: TextStyle(
@@ -52,7 +52,7 @@ class _RecoveryCodePageState extends State<RecoveryCodePage> {
             // Right side of screen
             Expanded(
                 child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     height: height,
                     color: Colors.white,
                     child: Center(
@@ -60,18 +60,18 @@ class _RecoveryCodePageState extends State<RecoveryCodePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SizedBox(height: height * 0.2),
-                          Text(
+                          SizedBox(height: height * 0.1),
+                          const Text(
                             'Verification',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 34.0),
                           ),
-                          SizedBox(height: 30),
-                          Text(
+                          const SizedBox(height: 30),
+                          const Text(
                               'We sent you a recovery code, enter it below.\nRecovery code was sent to your_email@example.com',
                               style:
                                   TextStyle(fontSize: 20, color: Colors.grey)),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Center(
                             child: VerificationCode(
                                 textStyle: const TextStyle(
@@ -87,7 +87,7 @@ class _RecoveryCodePageState extends State<RecoveryCodePage> {
                                 onCompleted: (value) {},
                                 onEditing: (value) {}),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -133,9 +133,9 @@ class _RecoveryCodePageState extends State<RecoveryCodePage> {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.blue,
                                   elevation: 5,
-                                  minimumSize: Size.fromHeight(50),
+                                  minimumSize: const Size.fromHeight(50),
                                 ),
-                                child: Text(
+                                child: const Text(
                                   'Verify',
                                   style: TextStyle(
                                       color: Colors.white,
