@@ -1,4 +1,4 @@
-import 'package:cp3405_project/ForgotPassword.dart';
+import 'package:cp3405_project/forgot_password.dart';
 import 'package:cp3405_project/signup.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,5 @@
+import 'package:cp3405_project/recovery_code.dart';
 import 'package:flutter/material.dart';
-import 'package:cp3405_project/rec';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -39,8 +39,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       child: ElevatedButton(
         onPressed: () {
           Navigator.push(
-                context, MaterialPageRoute(builder: (_) => ));
-          },
+              context, MaterialPageRoute(builder: (_) => RecoveryCodePage()));
+        },
         style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue,
             elevation: 5,
