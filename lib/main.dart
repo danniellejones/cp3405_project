@@ -1,6 +1,6 @@
 import 'package:cp3405_project/screens/base_nav_widget.dart';
 import 'package:cp3405_project/screens/welcome_screen.dart';
-import 'package:cp3405_project/screens/second_screen.dart';
+import 'package:cp3405_project/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -40,7 +40,16 @@ class MyApp extends StatelessWidget {
       routes: {
         // Screens for navigation
         '/': (context) => const WelcomeScreen(),
-        '/second': (context) => const SecondScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/forgotPassword': (context) => const LoginScreen(),
+        '/teacherLanding': (context) => const LoginScreen(),
+        '/studentLanding': (context) => const LoginScreen(),
+        '/questBoard': (context) => const LoginScreen(),
+        '/questPlanner': (context) => const LoginScreen(),
+        '/avatar': (context) => const LoginScreen(),
+        '/metrics': (context) => const LoginScreen(),
+        '/classView': (context) => const LoginScreen(),
+        '/classBoard': (context) => const LoginScreen(),
       },
       // home: const MyScreen(),
     );

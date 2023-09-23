@@ -17,8 +17,8 @@ class MobileNavigationWidget extends StatelessWidget {
     return Scaffold(
       appBar: CommonAppBar(title: title),
       body: ListView(
+        padding: const EdgeInsets.all(5),
         children: content,
-        padding: EdgeInsets.all(5),
       ),
       bottomNavigationBar: const MobileBottomNavBar(),
     );
