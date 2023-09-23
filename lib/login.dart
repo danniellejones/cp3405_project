@@ -1,6 +1,8 @@
+import 'package:cp3405_project/forgot_password.dart';
 import 'package:cp3405_project/signup.dart';
 import 'package:flutter/material.dart';
 
+// Remember to delete this when further into development
 void main() {
   runApp(const MaterialApp(home: LoginPage()));
 }
@@ -25,10 +27,11 @@ class _LoginPageState extends State<LoginPage> {
       children: <Widget>[
         TextField(
           decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.person),
-              hintText: 'Email',
-              errorText: validate ? 'Please enter email' : null),
+            border: const OutlineInputBorder(),
+            prefixIcon: const Icon(Icons.person),
+            hintText: 'Email',
+            errorText: validate ? 'Please enter email' : null,
+          ),
           textAlign: TextAlign.left,
           keyboardType: TextInputType.emailAddress,
           controller: emailController,
@@ -44,8 +47,8 @@ class _LoginPageState extends State<LoginPage> {
         TextField(
           obscureText: true,
           decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(Icons.lock),
+              border: const OutlineInputBorder(),
+              prefixIcon: const Icon(Icons.lock),
               hintText: 'Enter password',
               errorText: validate ? 'Please enter password' : null),
           textAlign: TextAlign.left,
@@ -128,7 +131,10 @@ class _LoginPageState extends State<LoginPage> {
         ),
         const Spacer(),
         TextButton(
-          onPressed: () => print('Forgot button pressed'),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const ForgotPasswordPage()));
+          },
           child: const Text(
             'Forgot Password?',
             style: TextStyle(
@@ -147,25 +153,26 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(title: const Text('World of Schoolcraft')),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Login',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 50),
-              buildEmail(),
-              const SizedBox(height: 20),
-              buildPassword(),
-              buildAccountManagement(),
-              buildLoginBtn(),
-              buildSignUp()
-            ],
+          padding: const EdgeInsets.all(20),
+          child: Center(
+            child: Column(
+              children: [
+                const Text(
+                  'Login',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 50),
+                buildEmail(),
+                const SizedBox(height: 20),
+                buildPassword(),
+                buildAccountManagement(),
+                buildLoginBtn(),
+                buildSignUp()
+              ],
+            ),
           ),
         ));
   }
