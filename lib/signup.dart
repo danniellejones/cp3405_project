@@ -12,76 +12,6 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   bool validate = false;
 
-  Widget buildPassword() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-                border: const OutlineInputBorder(),
-                prefixIcon: const Icon(Icons.lock),
-                hintText: 'Enter password',
-                errorText: validate ? 'Please enter password' : null),
-            textAlign: TextAlign.left,
-            keyboardType: TextInputType.text),
-        const SizedBox(height: 10),
-        TextField(
-          obscureText: true,
-          decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              prefixIcon: const Icon(Icons.lock),
-              hintText: 'Confirm password',
-              errorText: validate ? 'Please enter password' : null),
-          textAlign: TextAlign.left,
-          keyboardType: TextInputType.text,
-        )
-      ],
-    );
-  }
-
-  Widget buildSignUpBtn() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 25),
-      width: double.infinity,
-      alignment: Alignment.center,
-      child: ElevatedButton(
-        onPressed: () {
-          setState(() {});
-        },
-        style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            elevation: 5,
-            minimumSize: const Size.fromHeight(50)),
-        child: const Text(
-          'Sign Up',
-          style: TextStyle(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-
-  Widget buildLogIn() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text('Already have an account?'),
-        TextButton(
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (_) => const LoginPage()));
-          },
-          child: const Text(
-            'Log in',
-            style: TextStyle(
-                color: Colors.blueAccent, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -131,7 +61,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SizedBox(height: height * 0.2),
+                          SizedBox(height: height * 0.1),
                           Text(
                             'Sign up',
                             style: TextStyle(
@@ -183,6 +113,70 @@ class _SignUpPageState extends State<SignUpPage> {
                                             : null),
                                     textAlign: TextAlign.left,
                                     keyboardType: TextInputType.text,
+                                  ),
+                                  const SizedBox(height: 10),
+                                  TextField(
+                                      obscureText: true,
+                                      decoration: InputDecoration(
+                                          border: const OutlineInputBorder(),
+                                          prefixIcon: const Icon(Icons.lock),
+                                          hintText: 'Enter password',
+                                          errorText: validate
+                                              ? 'Please enter password'
+                                              : null),
+                                      textAlign: TextAlign.left,
+                                      keyboardType: TextInputType.text),
+                                  const SizedBox(height: 10),
+                                  TextField(
+                                    obscureText: true,
+                                    decoration: InputDecoration(
+                                        border: const OutlineInputBorder(),
+                                        prefixIcon: const Icon(Icons.lock),
+                                        hintText: 'Confirm password',
+                                        errorText: validate
+                                            ? 'Please enter password'
+                                            : null),
+                                    textAlign: TextAlign.left,
+                                    keyboardType: TextInputType.text,
+                                  ),
+                                  SizedBox(height: 10),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      setState(() {});
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.blue,
+                                        elevation: 5,
+                                        minimumSize: const Size.fromHeight(50)),
+                                    child: const Text(
+                                      'Sign Up',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text('Already have an account?'),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      const LoginPage()));
+                                        },
+                                        child: const Text(
+                                          'Log in',
+                                          style: TextStyle(
+                                              color: Colors.blueAccent,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ],
                                   )
                                 ],
                               ),
