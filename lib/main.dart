@@ -19,13 +19,11 @@ Future main() async {
 
   FirebaseRetrieval _firebase = new FirebaseRetrieval();  
   _firebase.RetrieveEntity('Users');
-  var username = 'username2'; 
-  _firebase.snapshot = await _firebase.entity.where('Username', isEqualTo: username).get(); 
+  await _firebase.findUserByUsername('username2'); 
   _firebase.retrieveUserData(); 
-  final userData = _firebase.getUserData();
+  final userData = _firebase.getUserData(); 
 
-
-  testData = userData.toString() + ' 1123'; 
+  testData = _firebase.getUserData().toString() + ' 1123'; 
 
 
   //final snapshot = await studentsEntity.where('Username', isEqualTo: 'username2').get(); 

@@ -6,9 +6,9 @@ class FirebaseRetrieval {
   String entityName = '';
   late CollectionReference<Map<String, dynamic>> entity;
   QuerySnapshot<Map<String, dynamic>>? snapshot; 
-  late Map<String, dynamic>? userData; 
+  Map<String, dynamic>? userData; 
   String password = ''; 
-  String username = ''; 
+  String firebaseUsername = ''; 
 
   RetrieveEntity(String entityName) {
     this.entityName = entityName; 
@@ -16,10 +16,9 @@ class FirebaseRetrieval {
   }
 
   findUserByUsername(String username) async {
-    return this.entity;
-    this.username = username; 
-    final snapshot = await this.entity.where('Username', isEqualTo: 'username1').get(); 
-    return snapshot; 
+    this.firebaseUsername = username; 
+    this.snapshot = await this.entity.where('Username', isEqualTo: username).get(); 
+    return this.snapshot; 
   }
 
   retrieveUserData() {
