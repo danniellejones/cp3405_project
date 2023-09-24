@@ -33,8 +33,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       height: height,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage(
-                                'lib/assets/images/img_classroom.png'),
+                            image: AssetImage('lib/assets/img_classroom.png'),
                             fit: BoxFit.fill),
                       ),
                       child: const Center(

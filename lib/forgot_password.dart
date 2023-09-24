@@ -34,8 +34,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       height: height,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage(
-                                'lib/assets/images/img_classroom.png'),
+                            image: AssetImage('lib/assets/img_classroom.png'),
                             fit: BoxFit.fill),
                       ),
                       child: const Center(
@@ -85,7 +84,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                 textAlign: TextAlign.left,
                                 keyboardType: TextInputType.emailAddress,
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               ElevatedButton(
                                 onPressed: () {
                                   Navigator.push(
