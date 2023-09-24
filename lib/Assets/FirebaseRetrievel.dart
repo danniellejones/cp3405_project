@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -9,6 +10,7 @@ class FirebaseRetrieval {
   Map<String, dynamic>? userData; 
   String password = ''; 
   String firebaseUsername = ''; 
+  String userType = ''; 
 
   RetrieveEntity(String entityName) {
     this.entityName = entityName; 
@@ -29,6 +31,11 @@ class FirebaseRetrieval {
     return this.userData; 
   }
 
+  comparePassword(String password) {
+    int match = password.compareTo(getSingleData('Password')); // 0 indicates the values are equal. Other values doesn't mean the values are equal. 
+    return match; 
+  }
+
   getSingleData(String field) {
     for (final entry in userData!.entries) {
       if (entry.key == field) {
@@ -37,17 +44,9 @@ class FirebaseRetrieval {
     }
   }
 
-  getPassword() {
-    var list = []; 
-    Iterable<MapEntry<String, dynamic>> entries = this.userData!.entries; 
-    for (final entry in this.userData!.entries) {
-      if (entry.key == 'Password') {
-        password = entry.value; 
-      }
-    }
-    return password; 
+  checkIfTeacherOrStudent() {
+    String userType = getSingleData('UserType');
+    return userType; 
   }
-
-
 
 }
