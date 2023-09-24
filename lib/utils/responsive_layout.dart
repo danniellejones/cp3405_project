@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// INFO: can try import 'package:flutter/foundation.dart' show kIsWeb;
+
 class ResponsiveLayout extends StatelessWidget {
   final Widget desktopScreen;
   final Widget mobileScreen;
