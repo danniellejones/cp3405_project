@@ -1,11 +1,7 @@
 import 'package:cp3405_project/forgot_password.dart';
+import 'package:cp3405_project/responsive_layout.dart';
 import 'package:cp3405_project/signup.dart';
 import 'package:flutter/material.dart';
-
-// Remember to delete this when further into development
-void main() {
-  runApp(const MaterialApp(home: LoginPage()));
-}
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -15,172 +11,194 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-
   bool validate = false;
   bool isRememberMe = false;
 
-  Widget buildEmail() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        TextField(
-          decoration: InputDecoration(
-            border: const OutlineInputBorder(),
-            prefixIcon: const Icon(Icons.person),
-            hintText: 'Email',
-            errorText: validate ? 'Please enter email' : null,
-          ),
-          textAlign: TextAlign.left,
-          keyboardType: TextInputType.emailAddress,
-          controller: emailController,
-        ),
-      ],
-    );
-  }
-
-  Widget buildPassword() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        TextField(
-          obscureText: true,
-          decoration: InputDecoration(
-              border: const OutlineInputBorder(),
-              prefixIcon: const Icon(Icons.lock),
-              hintText: 'Enter password',
-              errorText: validate ? 'Please enter password' : null),
-          textAlign: TextAlign.left,
-          controller: passwordController,
-          keyboardType: TextInputType.text,
-        ),
-      ],
-    );
-  }
-
-  Widget buildLoginBtn() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 25),
-      width: double.infinity,
-      alignment: Alignment.center,
-      child: ElevatedButton(
-        onPressed: () {
-          setState(() {
-            emailController.text.isEmpty ? validate = true : validate = false;
-            passwordController.text.isEmpty
-                ? validate = true
-                : validate = false;
-          });
-        },
-        style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
-            elevation: 5,
-            minimumSize: const Size.fromHeight(50)),
-        child: const Text(
-          'Login',
-          style: TextStyle(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-  }
-
-  Widget buildSignUp() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text('Don\'t have an account?'),
-        TextButton(
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (_) => const SignUpPage()));
-          },
-          child: const Text(
-            'Sign up',
-            style: TextStyle(
-                color: Colors.blueAccent, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget buildAccountManagement() {
-    return Row(
-      children: [
-        Theme(
-          data: ThemeData(unselectedWidgetColor: Colors.blue),
-          child: Checkbox(
-            value: isRememberMe,
-            checkColor: Colors.green,
-            activeColor: Colors.white,
-            onChanged: (value) {
-              setState(() {
-                isRememberMe = value!;
-              });
-            },
-          ),
-        ),
-        const Text(
-          'Remember me',
-          style: TextStyle(
-            color: Colors.blueAccent,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const Spacer(),
-        TextButton(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (_) => const ForgotPasswordPage()));
-          },
-          child: const Text(
-            'Forgot Password?',
-            style: TextStyle(
-              color: Colors.blueAccent,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: const Text('World of Schoolcraft')),
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          padding: const EdgeInsets.all(20),
-          child: Center(
-            child: Column(
-              children: [
-                const Text(
-                  'Login',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 50),
-                buildEmail(),
-                const SizedBox(height: 20),
-                buildPassword(),
-                buildAccountManagement(),
-                buildLoginBtn(),
-                buildSignUp()
-              ],
-            ),
-          ),
-        ));
-  }
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
-    emailController.dispose();
-    passwordController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ResponsiveLayout.isMobileScreen(context)
+                ? const SizedBox()
+                : Expanded(
+                    // Left side of screen
+                    child: Container(
+                      height: height,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('lib/assets/img_classroom.png'),
+                            fit: BoxFit.fill),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'World of Schoolcraft',
+                          style: TextStyle(
+                              fontSize: 48.0,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+
+            // Right side of screen
+            Expanded(
+                child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 50),
+                    const Text(
+                      'Login',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 52.0),
+                    ),
+                    const SizedBox(height: 10),
+                    const Text(
+                        'Embark on Your Academic Adventure \nSign in and explore the Depths of Knowledge!',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 18, color: Colors.grey)),
+                    const SizedBox(height: 30),
+                    TextField(
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                            border: const OutlineInputBorder(),
+                            prefixIcon: const Icon(Icons.email),
+                            hintText: 'Email',
+                            errorText: validate
+                                ? 'Please enter email address linked to your account'
+                                : null),
+                        textAlign: TextAlign.left,
+                        keyboardType: TextInputType.emailAddress),
+                    const SizedBox(height: 10),
+                    TextField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          prefixIcon: const Icon(Icons.lock),
+                          hintText: 'Enter password',
+                          errorText:
+                              validate ? 'Please enter your password' : null),
+                      textAlign: TextAlign.left,
+                      keyboardType: TextInputType.text,
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          if (_emailController.text.isEmpty &&
+                              _passwordController.text.isEmpty) {
+                            validate = false;
+                          } else {
+                            validate = false;
+                          }
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          elevation: 5,
+                          minimumSize: const Size.fromHeight(50)),
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Theme(
+                          data: ThemeData(unselectedWidgetColor: Colors.blue),
+                          child: Checkbox(
+                            value: isRememberMe,
+                            checkColor: Colors.green,
+                            activeColor: Colors.white,
+                            onChanged: (value) {
+                              setState(() {
+                                isRememberMe = value!;
+                              });
+                            },
+                          ),
+                        ),
+                        const Text(
+                          'Remember me',
+                          style: TextStyle(
+                            color: Colors.blueAccent,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) =>
+                                        const ForgotPasswordPage()));
+                          },
+                          child: const Text(
+                            'Forgot Password?',
+                            style: TextStyle(
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Don\'t have an account?',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => const SignUpPage()));
+                          },
+                          child: const Text(
+                            'Sign up',
+                            style: TextStyle(
+                                color: Colors.blueAccent,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            )),
+          ],
+        ),
+      ),
+    );
   }
 }

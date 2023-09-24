@@ -1,16 +1,14 @@
-
 import 'package:cp3405_project/screens/screen_welcome.dart';
 import 'package:cp3405_project/screens/screen_login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cp3405_project/login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-
-var testData = ''; 
+var testData = '';
 
 Future main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -20,47 +18,42 @@ Future main() async {
 
   //final snapshot = await db.collection('Students').where('userType', isEqualTo: 'Student').get();
 
-  //final snapshot = await studentsEntity.doc('test-Student').get(); 
-  final snapshot = await studentsEntity.where('Username', isEqualTo: 'username2').get(); 
-    final studentData = snapshot.docChanges.first.doc.data(); 
-  
+  //final snapshot = await studentsEntity.doc('test-Student').get();
+  final snapshot =
+      await studentsEntity.where('Username', isEqualTo: 'username2').get();
+  final studentData = snapshot.docChanges.first.doc.data();
+
   testData = studentData.toString() + '123';
-  var _username = ''; 
-  Iterable<MapEntry<String, dynamic>> entries = studentData!.entries; 
+  var _username = '';
+  Iterable<MapEntry<String, dynamic>> entries = studentData!.entries;
   for (final entry in studentData.entries) {
     if (entry.key == 'Username') {
-      testData = entry.value; 
-      _username = entry.value; 
+      testData = entry.value;
+      _username = entry.value;
     }
   }
 
-  var _checkUsername = 'username2'; 
-  testData = _username.compareTo(_checkUsername).toString() + 'true'; // 0 indicates the values are equal. Other values doesn't mean the values are equal. 
+  var _checkUsername = 'username2';
+  testData = _username.compareTo(_checkUsername).toString() +
+      'true'; // 0 indicates the values are equal. Other values doesn't mean the values are equal.
 
+  // testData = studentData!.entries.isNotEmpty.toString(); // Checks if account has values within.
 
-  
-  // testData = studentData!.entries.isNotEmpty.toString(); // Checks if account has values within. 
-
-
-  
-  //final snapshot = await studentsEntity.doc('test-Student').get(); 
+  //final snapshot = await studentsEntity.doc('test-Student').get();
   //final studentData = snapshot.toString();
   // testData = studentData!.entries.last.value.toString();
   // testData = studentData!.entries.elementAt(5).value.toString();
 
   // testData = studentData!.entries.toList().elementAt(0).value.toString();
 
-
   studentsEntity.get().then((QuerySnapshot querySnapshot) {
     for (var doc in querySnapshot.docs) {
-      testData = doc.toString(); 
-     }
+      testData = doc.toString();
+    }
   });
 
-    runApp(const MyApp());
-  
+  runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -132,8 +125,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  // final String _studentName = 'My Name is Jay Davis'; 
-  final String _studentName = testData; 
+  // final String _studentName = 'My Name is Jay Davis';
+  final String _studentName = testData;
 
   void _incrementCounter() {
     setState(() {
@@ -191,9 +184,8 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             Text(
-              _studentName, 
+              _studentName,
               style: Theme.of(context).textTheme.headlineMedium,
-
             )
           ],
         ),
