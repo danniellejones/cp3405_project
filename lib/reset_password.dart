@@ -13,13 +13,9 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        body: SizedBox(
-      height: height,
-      width: width,
-      child: SingleChildScrollView(
+      body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,79 +46,76 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
             // Right side of screen
             Expanded(
-                child: Container(
-                    padding: const EdgeInsets.all(20),
-                    height: height,
-                    color: Colors.white,
-                    child: Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(height: height * 0.1),
-                          const Text(
-                            'Reset Password',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 34.0),
-                          ),
-                          const SizedBox(height: 30),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              const TextField(
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  prefixIcon: Icon(Icons.lock),
-                                  hintText: 'New Password',
-                                ),
-                                textAlign: TextAlign.left,
-                                keyboardType: TextInputType.text,
-                              ),
-                              const SizedBox(height: 10),
-                              const TextField(
-                                  obscureText: true,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.lock),
-                                    hintText: 'Confirm password',
-                                  ),
-                                  textAlign: TextAlign.left,
-                                  keyboardType: TextInputType.text),
-                              const SizedBox(height: 10),
-                              Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 25),
-                                width: double.infinity,
-                                alignment: Alignment.center,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => const LoginPage()));
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.blue,
-                                      elevation: 5,
-                                      minimumSize: const Size.fromHeight(50)),
-                                  child: const Text(
-                                    'Submit',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Center(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 50),
+                    const Text(
+                      'Reset Password',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 58.0),
+                    ),
+                    const SizedBox(height: 30),
+                    const Text('Enter and confirm new password',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 18, color: Colors.grey)),
+                    const SizedBox(height: 30),
+                    const TextField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.lock),
+                        hintText: 'New Password',
                       ),
-                    )))
+                      textAlign: TextAlign.left,
+                      keyboardType: TextInputType.text,
+                    ),
+                    const SizedBox(height: 10),
+                    const TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.lock),
+                          hintText: 'Confirm password',
+                        ),
+                        textAlign: TextAlign.left,
+                        keyboardType: TextInputType.text),
+                    const SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 25),
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const LoginPage()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue,
+                            elevation: 5,
+                            minimumSize: const Size.fromHeight(50)),
+                        child: const Text(
+                          'Submit',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    )
+                  ],
+                )),
+              ),
+            )
           ],
         ),
       ),
-    ));
+    );
   }
 }

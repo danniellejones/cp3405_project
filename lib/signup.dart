@@ -24,7 +24,6 @@ class _SignUpPageState extends State<SignUpPage> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Row(
@@ -68,9 +67,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 52.0),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 10),
                     const Text(
-                      'Embark on Your Academic Adventure \nSign up and explore the Depths of Knowledge!',
+                      'Sign up and explore the Depths of Knowledge!',
                       style: TextStyle(fontSize: 18, color: Colors.grey),
                       textAlign: TextAlign.center,
                     ),
@@ -161,6 +160,23 @@ class _SignUpPageState extends State<SignUpPage> {
                                 confirmPasswordController.text.isEmpty
                                     ? validate = true
                                     : validate = false;
+
+                                showDialog(
+                                    context: context,
+                                    builder: ((context) => AlertDialog(
+                                          title: Text('Sign up complete!'),
+                                          content: Text(
+                                              'Adventurer!\nYou\'re account has been created.\nTime to login and explore!'),
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () => Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (_) =>
+                                                            LoginPage())),
+                                                child: Text('Okay'))
+                                          ],
+                                        )));
                               });
                             },
                             style: ElevatedButton.styleFrom(
@@ -179,7 +195,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text('Already have an account?'),
+                            const Text(
+                              'Already have an account?',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                             TextButton(
                               onPressed: () {
                                 Navigator.push(
@@ -188,7 +207,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         builder: (_) => const LoginPage()));
                               },
                               child: const Text(
-                                'Log in',
+                                'Login',
                                 style: TextStyle(
                                     color: Colors.blueAccent,
                                     fontWeight: FontWeight.bold),

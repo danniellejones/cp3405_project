@@ -52,15 +52,15 @@ class _RecoveryCodePageState extends State<RecoveryCodePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: height * 0.1),
+                    SizedBox(height: 50),
                     const Text(
                       'Verification',
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 52.0),
                     ),
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 10),
                     const Text(
-                        'We sent you a recovery code, enter it below.\nRecovery code was sent to:\n your_email@example.com',
+                        'We sent you a special recovery code, enter it below. Recovery code was sent to:\n your_email@example.com',
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 18, color: Colors.grey)),
                     const SizedBox(height: 20),
@@ -91,7 +91,7 @@ class _RecoveryCodePageState extends State<RecoveryCodePage> {
                                     'Re-sent recovery code',
                                   ),
                                   content: const Text(
-                                      'Never fear!\nWe re-sent you a new recovery code.\nPlease check your email.'),
+                                      'Never fear!\n\nWe re-sent you a new recovery code.\nPlease check your email.'),
                                   actions: <Widget>[
                                     TextButton(
                                         onPressed: () =>

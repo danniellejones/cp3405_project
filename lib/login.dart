@@ -14,12 +14,14 @@ class _LoginPageState extends State<LoginPage> {
   bool validate = false;
   bool isRememberMe = false;
 
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Row(
@@ -57,20 +59,21 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     const Text(
                       'Login',
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 52.0),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 10),
                     const Text(
                         'Embark on Your Academic Adventure \nSign in and explore the Depths of Knowledge!',
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 18, color: Colors.grey)),
                     const SizedBox(height: 30),
-                    const TextField(
-                        decoration: InputDecoration(
+                    TextField(
+                        controller: _emailController,
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           prefixIcon: Icon(Icons.email),
                           hintText: 'Email',
@@ -78,7 +81,8 @@ class _LoginPageState extends State<LoginPage> {
                         textAlign: TextAlign.left,
                         keyboardType: TextInputType.emailAddress),
                     const SizedBox(height: 10),
-                    const TextField(
+                    TextField(
+                      controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
@@ -150,7 +154,10 @@ class _LoginPageState extends State<LoginPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('Don\'t have an account?'),
+                        const Text(
+                          'Don\'t have an account?',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                         TextButton(
                           onPressed: () {
                             Navigator.push(

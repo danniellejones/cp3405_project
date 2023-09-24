@@ -61,7 +61,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 52.0),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 10),
                     const Text(
                         'Enter your email to send a special code to recover your account',
                         textAlign: TextAlign.center,
