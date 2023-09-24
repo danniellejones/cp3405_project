@@ -19,10 +19,10 @@ Future main() async {
   );
 
 //--------------------Retrieve User data from Firebase------------------- 
-  _firebase.RetrieveEntity('Users');
+  _firebase.retrieveEntity('Users');
   await _firebase.findUserByUsername('username1'); 
   _firebase.retrieveUserData(); 
-  final userData = _firebase.getUserData(); 
+  _firebase.getUserData(); 
 
 
   //--------------------Check Login-------------------

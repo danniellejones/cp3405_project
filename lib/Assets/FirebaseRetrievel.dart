@@ -12,7 +12,7 @@ class FirebaseRetrieval {
   String firebaseUsername = ''; 
   String userType = ''; 
 
-  RetrieveEntity(String entityName) {
+  retrieveEntity(String entityName) {
     this.entityName = entityName; 
     this.entity = FirebaseFirestore.instance.collection(this.entityName);
   }
