@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cp3405_project/Assets/Firebase.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -14,46 +15,60 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  final studentsEntity = FirebaseFirestore.instance.collection('Students');
+  //final studentsEntity = FirebaseFirestore.instance.collection('Students');
 
-  //final snapshot = await db.collection('Students').where('userType', isEqualTo: 'Student').get();
+  final _firebase = FirebaseRetrieval(); 
+  final studentsEntity = _firebase.RetrieveEntity('Users');
+  final snapshot = await studentsEntity.where('Username', isEqualTo: 'username1').get(); 
+  final userData = snapshot?.docChanges.first.doc.data();
 
-  //final snapshot = await studentsEntity.doc('test-Student').get(); 
-  final snapshot = await studentsEntity.where('Username', isEqualTo: 'username2').get(); 
-    final studentData = snapshot.docChanges.first.doc.data(); 
+
+  testData = userData.toString() + ' 1123'; 
+
+
+  //final snapshot = await studentsEntity.where('Username', isEqualTo: 'username2').get(); 
+
+  // final usersEntity = _firebase.RetrieveEntity('Users');
+  // final usersEntity = FirebaseFirestore.instance.collection('Users');
   
-  testData = studentData.toString() + '123';
+  //_firebase.findUserByUsername('username2');
+  //_firebase.retrieveUserData();
+  //final userData = _firebase.getUserData(); 
+  
+  //testData = userData.toString() + '123';
   var _username = ''; 
-  Iterable<MapEntry<String, dynamic>> entries = studentData!.entries; 
-  for (final entry in studentData.entries) {
-    if (entry.key == 'Username') {
-      testData = entry.value; 
-      _username = entry.value; 
-    }
-  }
-
-  var _checkUsername = 'username2'; 
-  testData = _username.compareTo(_checkUsername).toString() + 'true'; // 0 indicates the values are equal. Other values doesn't mean the values are equal. 
+  
+  
+  //Iterable<MapEntry<String, dynamic>> entries = userData!.entries; 
+  //for (final entry in userData.entries) {
+  //  if (entry.key == 'Username') {
+  //    testData = entry.value; 
+  //    _username = entry.value; 
+  //  }
+  //}
+//
+  //var _checkUsername = 'username2'; 
+  //testData = _username.compareTo(_checkUsername).toString() + 'true'; // 0 indicates the values are equal. Other values doesn't mean the values are equal. 
 
 
   
-  // testData = studentData!.entries.isNotEmpty.toString(); // Checks if account has values within. 
+  // testData = userData!.entries.isNotEmpty.toString(); // Checks if account has values within. 
 
 
   
-  //final snapshot = await studentsEntity.doc('test-Student').get(); 
-  //final studentData = snapshot.toString();
-  // testData = studentData!.entries.last.value.toString();
-  // testData = studentData!.entries.elementAt(5).value.toString();
+  //final snapshot = await usersEntity.doc('test-Student').get(); 
+  //final userData = snapshot.toString();
+  // testData = userData!.entries.last.value.toString();
+  // testData = userData!.entries.elementAt(5).value.toString();
 
-  // testData = studentData!.entries.toList().elementAt(0).value.toString();
+  // testData = userData!.entries.toList().elementAt(0).value.toString();
 
 
-  studentsEntity.get().then((QuerySnapshot querySnapshot) {
-    for (var doc in querySnapshot.docs) {
-      testData = doc.toString(); 
-     }
-  });
+  //usersEntity.get().then((QuerySnapshot querySnapshot) {
+  //  for (var doc in querySnapshot.docs) {
+  //    testData = doc.toString(); 
+  //   }
+  //});
 
     runApp(const MyApp());
   
@@ -112,8 +127,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  // final String _studentName = 'My Name is Jay Davis'; 
-  final String _studentName = testData; 
+  final String _userName = testData; 
 
   void _incrementCounter() {
     setState(() {
@@ -171,7 +185,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             Text(
-              _studentName, 
+              _userName, 
               style: Theme.of(context).textTheme.headlineMedium,
 
             )
