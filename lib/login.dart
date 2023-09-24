@@ -18,6 +18,13 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
 
   @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
 
@@ -73,11 +80,13 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: 30),
                     TextField(
                         controller: _emailController,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.email),
-                          hintText: 'Email',
-                        ),
+                        decoration: InputDecoration(
+                            border: const OutlineInputBorder(),
+                            prefixIcon: const Icon(Icons.email),
+                            hintText: 'Email',
+                            errorText: validate
+                                ? 'Please enter email address linked to your account'
+                                : null),
                         textAlign: TextAlign.left,
                         keyboardType: TextInputType.emailAddress),
                     const SizedBox(height: 10),
@@ -85,16 +94,25 @@ class _LoginPageState extends State<LoginPage> {
                       controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.lock),
-                          hintText: 'Enter password'),
+                          border: const OutlineInputBorder(),
+                          prefixIcon: const Icon(Icons.lock),
+                          hintText: 'Enter password',
+                          errorText:
+                              validate ? 'Please enter your password' : null),
                       textAlign: TextAlign.left,
                       keyboardType: TextInputType.text,
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
-                        setState(() {});
+                        setState(() {
+                          if (_emailController.text.isEmpty &&
+                              _passwordController.text.isEmpty) {
+                            validate = false;
+                          } else {
+                            validate = false;
+                          }
+                        });
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,

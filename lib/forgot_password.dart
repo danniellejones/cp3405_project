@@ -12,10 +12,10 @@ class ForgotPasswordPage extends StatefulWidget {
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   bool validate = false;
 
+  final _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -54,7 +54,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     const Text(
                       'Forgot Password?',
                       textAlign: TextAlign.center,
@@ -73,8 +73,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        const TextField(
-                          decoration: InputDecoration(
+                        TextField(
+                          controller: _emailController,
+                          decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             prefixIcon: Icon(Icons.email),
                             hintText: 'Email',

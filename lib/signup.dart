@@ -10,18 +10,27 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  var firstNameController = TextEditingController();
-  var lastNameController = TextEditingController();
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-  var confirmPasswordController = TextEditingController();
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   bool validate = false;
 
   @override
+  void dispose() {
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -61,7 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     const Text(
                       'Sign up',
                       style: TextStyle(
@@ -86,7 +95,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   validate ? 'Please enter first name' : null),
                           textAlign: TextAlign.left,
                           keyboardType: TextInputType.text,
-                          controller: firstNameController,
+                          controller: _firstNameController,
                         ),
                         const SizedBox(height: 10),
                         TextField(
@@ -98,9 +107,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                   validate ? 'Please enter last name' : null),
                           textAlign: TextAlign.left,
                           keyboardType: TextInputType.text,
-                          controller: lastNameController,
+                          controller: _lastNameController,
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         TextField(
                           decoration: InputDecoration(
                               border: const OutlineInputBorder(),
@@ -110,9 +119,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                   validate ? 'Please enter email' : null),
                           textAlign: TextAlign.left,
                           keyboardType: TextInputType.text,
-                          controller: emailController,
+                          controller: _emailController,
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         TextField(
                           obscureText: true,
                           decoration: InputDecoration(
@@ -123,7 +132,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   validate ? 'Please enter password' : null),
                           textAlign: TextAlign.left,
                           keyboardType: TextInputType.text,
-                          controller: passwordController,
+                          controller: _passwordController,
                         ),
                         const SizedBox(height: 10),
                         TextField(
@@ -136,7 +145,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   validate ? 'Please enter password' : null),
                           textAlign: TextAlign.left,
                           keyboardType: TextInputType.text,
-                          controller: confirmPasswordController,
+                          controller: _confirmPasswordController,
                         ),
                         Container(
                           padding: const EdgeInsets.symmetric(vertical: 25),
@@ -145,27 +154,12 @@ class _SignUpPageState extends State<SignUpPage> {
                           child: ElevatedButton(
                             onPressed: () {
                               setState(() {
-                                firstNameController.text.isEmpty
-                                    ? validate = true
-                                    : validate = false;
-                                lastNameController.text.isEmpty
-                                    ? validate = true
-                                    : validate = false;
-                                emailController.text.isEmpty
-                                    ? validate = true
-                                    : validate = false;
-                                passwordController.text.isEmpty
-                                    ? validate = true
-                                    : validate = false;
-                                confirmPasswordController.text.isEmpty
-                                    ? validate = true
-                                    : validate = false;
-
                                 showDialog(
                                     context: context,
                                     builder: ((context) => AlertDialog(
-                                          title: Text('Sign up complete!'),
-                                          content: Text(
+                                          title:
+                                              const Text('Sign up complete!'),
+                                          content: const Text(
                                               'Adventurer!\nYou\'re account has been created.\nTime to login and explore!'),
                                           actions: [
                                             TextButton(
@@ -174,7 +168,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                                     MaterialPageRoute(
                                                         builder: (_) =>
                                                             LoginPage())),
-                                                child: Text('Okay'))
+                                                child: const Text('Okay'))
                                           ],
                                         )));
                               });

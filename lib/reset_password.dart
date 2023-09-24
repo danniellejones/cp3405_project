@@ -10,6 +10,15 @@ class ResetPasswordPage extends StatefulWidget {
 }
 
 class _ResetPasswordPageState extends State<ResetPasswordPage> {
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+  @override
+  void dispose() {
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -64,7 +73,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 18, color: Colors.grey)),
                     const SizedBox(height: 30),
-                    const TextField(
+                    TextField(
+                      controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -75,7 +85,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       keyboardType: TextInputType.text,
                     ),
                     const SizedBox(height: 10),
-                    const TextField(
+                    TextField(
+                        controller: _confirmPasswordController,
                         obscureText: true,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
