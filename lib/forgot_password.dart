@@ -18,10 +18,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        body: SizedBox(
-      height: height,
-      width: width,
-      child: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -51,68 +48,69 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
             // Right side of screen
             Expanded(
-                child: Container(
-                    padding: const EdgeInsets.all(20),
-                    height: height,
-                    color: Colors.white,
-                    child: Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(height: height * 0.1),
-                          const Text(
-                            'Forgot Password?',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 34.0),
+                child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 50),
+                    const Text(
+                      'Forgot Password?',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 52.0),
+                    ),
+                    const SizedBox(height: 30),
+                    const Text(
+                        'Enter your email to send a special code to recover your account',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey,
+                        )),
+                    const SizedBox(height: 20),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const TextField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            prefixIcon: Icon(Icons.email),
+                            hintText: 'Email',
                           ),
-                          const SizedBox(height: 30),
-                          const Text(
-                              'Enter your email to send a special code to recover your account',
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.grey)),
-                          const SizedBox(height: 20),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              const TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  prefixIcon: Icon(Icons.email),
-                                  hintText: 'Email',
-                                ),
-                                textAlign: TextAlign.left,
-                                keyboardType: TextInputType.emailAddress,
-                              ),
-                              const SizedBox(height: 20),
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (_) =>
-                                              const RecoveryCodePage()));
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blue,
-                                    elevation: 5,
-                                    minimumSize: const Size.fromHeight(50)),
-                                child: const Text(
-                                  'Send code',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    )))
+                          textAlign: TextAlign.left,
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                        const SizedBox(height: 20),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => const RecoveryCodePage()));
+                          },
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              elevation: 5,
+                              minimumSize: const Size.fromHeight(50)),
+                          child: const Text(
+                            'Send code',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ))
           ],
         ),
       ),
-    ));
+    );
   }
 }

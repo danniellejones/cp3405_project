@@ -24,10 +24,8 @@ class _SignUpPageState extends State<SignUpPage> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        body: SizedBox(
-      height: height,
-      width: width,
-      child: SingleChildScrollView(
+      backgroundColor: Colors.grey[200],
+      body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,164 +56,155 @@ class _SignUpPageState extends State<SignUpPage> {
 
             // Right side of screen
             Expanded(
-                child: Container(
-                    padding: const EdgeInsets.all(20),
-                    height: height,
-                    color: Colors.white,
-                    child: Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(height: height * 0.1),
-                          const Text(
-                            'Sign up',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 34.0),
+                child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 50),
+                    const Text(
+                      'Sign up',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 52.0),
+                    ),
+                    const SizedBox(height: 30),
+                    const Text(
+                      'Embark on Your Academic Adventure \nSign up and explore the Depths of Knowledge!',
+                      style: TextStyle(fontSize: 18, color: Colors.grey),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 20),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        TextField(
+                          decoration: InputDecoration(
+                              border: const OutlineInputBorder(),
+                              prefixIcon: const Icon(Icons.person),
+                              hintText: 'First name',
+                              errorText:
+                                  validate ? 'Please enter first name' : null),
+                          textAlign: TextAlign.left,
+                          keyboardType: TextInputType.text,
+                          controller: firstNameController,
+                        ),
+                        const SizedBox(height: 10),
+                        TextField(
+                          decoration: InputDecoration(
+                              border: const OutlineInputBorder(),
+                              prefixIcon: const Icon(Icons.person),
+                              hintText: 'Last name',
+                              errorText:
+                                  validate ? 'Please enter last name' : null),
+                          textAlign: TextAlign.left,
+                          keyboardType: TextInputType.text,
+                          controller: lastNameController,
+                        ),
+                        SizedBox(height: 10),
+                        TextField(
+                          decoration: InputDecoration(
+                              border: const OutlineInputBorder(),
+                              prefixIcon: const Icon(Icons.email),
+                              hintText: 'Email',
+                              errorText:
+                                  validate ? 'Please enter email' : null),
+                          textAlign: TextAlign.left,
+                          keyboardType: TextInputType.text,
+                          controller: emailController,
+                        ),
+                        SizedBox(height: 10),
+                        TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                              border: const OutlineInputBorder(),
+                              prefixIcon: const Icon(Icons.lock),
+                              hintText: 'Enter password',
+                              errorText:
+                                  validate ? 'Please enter password' : null),
+                          textAlign: TextAlign.left,
+                          keyboardType: TextInputType.text,
+                          controller: passwordController,
+                        ),
+                        const SizedBox(height: 10),
+                        TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                              border: const OutlineInputBorder(),
+                              prefixIcon: const Icon(Icons.lock),
+                              hintText: 'Confirm password',
+                              errorText:
+                                  validate ? 'Please enter password' : null),
+                          textAlign: TextAlign.left,
+                          keyboardType: TextInputType.text,
+                          controller: confirmPasswordController,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(vertical: 25),
+                          width: double.infinity,
+                          alignment: Alignment.center,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                firstNameController.text.isEmpty
+                                    ? validate = true
+                                    : validate = false;
+                                lastNameController.text.isEmpty
+                                    ? validate = true
+                                    : validate = false;
+                                emailController.text.isEmpty
+                                    ? validate = true
+                                    : validate = false;
+                                passwordController.text.isEmpty
+                                    ? validate = true
+                                    : validate = false;
+                                confirmPasswordController.text.isEmpty
+                                    ? validate = true
+                                    : validate = false;
+                              });
+                            },
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue,
+                                elevation: 5,
+                                minimumSize: const Size.fromHeight(50)),
+                            child: const Text(
+                              'Sign Up',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                          const SizedBox(height: 30),
-                          const Text(
-                              'Embark on Your Academic Adventure \nSign up and explore the Depths of Knowledge!',
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.grey)),
-                          const SizedBox(height: 20),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              TextField(
-                                decoration: InputDecoration(
-                                    border: const OutlineInputBorder(),
-                                    prefixIcon: const Icon(Icons.person),
-                                    hintText: 'First name',
-                                    errorText: validate
-                                        ? 'Please enter first name'
-                                        : null),
-                                textAlign: TextAlign.left,
-                                keyboardType: TextInputType.text,
-                                controller: firstNameController,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text('Already have an account?'),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => const LoginPage()));
+                              },
+                              child: const Text(
+                                'Log in',
+                                style: TextStyle(
+                                    color: Colors.blueAccent,
+                                    fontWeight: FontWeight.bold),
                               ),
-                              const SizedBox(height: 10),
-                              TextField(
-                                decoration: InputDecoration(
-                                    border: const OutlineInputBorder(),
-                                    prefixIcon: const Icon(Icons.person),
-                                    hintText: 'Last name',
-                                    errorText: validate
-                                        ? 'Please enter last name'
-                                        : null),
-                                textAlign: TextAlign.left,
-                                keyboardType: TextInputType.text,
-                                controller: lastNameController,
-                              ),
-                              SizedBox(height: 10),
-                              TextField(
-                                decoration: InputDecoration(
-                                    border: const OutlineInputBorder(),
-                                    prefixIcon: const Icon(Icons.email),
-                                    hintText: 'Email',
-                                    errorText:
-                                        validate ? 'Please enter email' : null),
-                                textAlign: TextAlign.left,
-                                keyboardType: TextInputType.text,
-                                controller: emailController,
-                              ),
-                              SizedBox(height: 10),
-                              TextField(
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                    border: const OutlineInputBorder(),
-                                    prefixIcon: const Icon(Icons.lock),
-                                    hintText: 'Enter password',
-                                    errorText: validate
-                                        ? 'Please enter password'
-                                        : null),
-                                textAlign: TextAlign.left,
-                                keyboardType: TextInputType.text,
-                                controller: passwordController,
-                              ),
-                              const SizedBox(height: 10),
-                              TextField(
-                                obscureText: true,
-                                decoration: InputDecoration(
-                                    border: const OutlineInputBorder(),
-                                    prefixIcon: const Icon(Icons.lock),
-                                    hintText: 'Confirm password',
-                                    errorText: validate
-                                        ? 'Please enter password'
-                                        : null),
-                                textAlign: TextAlign.left,
-                                keyboardType: TextInputType.text,
-                                controller: confirmPasswordController,
-                              ),
-                              SizedBox(height: 10),
-                              Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 25),
-                                width: double.infinity,
-                                alignment: Alignment.center,
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      firstNameController.text.isEmpty
-                                          ? validate = true
-                                          : validate = false;
-                                      lastNameController.text.isEmpty
-                                          ? validate = true
-                                          : validate = false;
-                                      emailController.text.isEmpty
-                                          ? validate = true
-                                          : validate = false;
-                                      passwordController.text.isEmpty
-                                          ? validate = true
-                                          : validate = false;
-                                      confirmPasswordController.text.isEmpty
-                                          ? validate = true
-                                          : validate = false;
-                                    });
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.blue,
-                                      elevation: 5,
-                                      minimumSize: const Size.fromHeight(50)),
-                                  child: const Text(
-                                    'Sign Up',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text('Already have an account?'),
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) =>
-                                                  const LoginPage()));
-                                    },
-                                    child: const Text(
-                                      'Log in',
-                                      style: TextStyle(
-                                          color: Colors.blueAccent,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    )))
+                            ),
+                          ],
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ))
           ],
         ),
       ),
-    ));
+    );
   }
 }
