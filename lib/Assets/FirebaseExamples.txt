@@ -1,0 +1,43 @@
+<> indicates where a variable is put. For example, <username.String> represents the String variable, 'username'. 
+
+//--------------------Retrieve User data from Firebase------------------- 
+  _firebase.retrieveEntity('Users');
+  await _firebase.findUserByUsername(<username.String>); 
+  _firebase.retrieveUserData(); 
+  _firebase.getUserData(); // 
+
+
+  //--------------------Check Login-------------------
+  String firstName = _firebase.getSingleData('FirstName'); // Retrieves single bit of data from the user's row of data. In this example, it retrieves the first name of the user
+  // Can be used to collect username, password, email, etc. 
+  
+  int passwordMatch = _firebase.comparePassword(<password.String>); // Compares the password the user inputs to the password stored on Firebase. Doesn't store the password from Firebase locally.  
+  if (identical(passwordMatch, 0)) {  // Indicates passwords match
+    if (identical(true, _firebase.getSingleData('Active'))) { // Checks if user account is still active. Old user accounts would be marked false and would be unable to use for login
+      // Write code here to go towards landing page where login was successful. 
+      testData = 'Login Successful';  // Make sure login was successful
+      checkUserType();  // Checks if Student or Teacher. No 'else' statement yet in case we decide to add more user types (admin, etc.)
+    }
+  }
+  else {
+    testData = 'Login Failed';
+  }
+
+
+  
+checkUserType() {
+  //--------------------Checks UserType-------------------
+  String userType = _firebase.checkIfTeacherOrStudent(); // Outputs either 'Student' or 'Teacher' 
+  if (identical(userType, 'Teacher') == true) {
+    Teacher teacher = new Teacher(_firebase.getUserData(), _firebase.snapshot); // Creates new Teacher instance with the user's data from the Firebase instance
+  }
+  else if (identical(userType, 'Student') == true) {
+    Student student = new Student(_firebase.getUserData(), _firebase.snapshot); // Creates new Student instance with the user's data from the Firebase instance
+        
+    List classList = student.getClasses(); // Adds all classes to a list. Specific class can be retrieved using classList[index] 
+
+    student.addPoints(<points.int>); // Adds number of points specified from parameter to user's current points in Firebase
+
+    testData = student.getDOB(); // Retrieves student's data (DOB) as a String to use for later reference. Other 'get' functions for Students can be found in the Student class     
+  }
+}

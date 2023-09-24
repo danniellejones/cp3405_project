@@ -11,12 +11,16 @@ import 'package:cp3405_project/screens/screen_questplanner.dart';
 import 'package:cp3405_project/screens/screen_signup.dart';
 import 'package:cp3405_project/screens/screen_suggestion.dart';
 import 'package:cp3405_project/screens/screen_welcome.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cp3405_project/Assets/FirebaseRetrievel.dart';
+import 'package:cp3405_project/Assets/Student.dart';
+import 'package:cp3405_project/Assets/Teacher.dart';
 import 'package:cp3405_project/screens/screen_login.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+FirebaseRetrieval _firebase = new FirebaseRetrieval();  
 var testData = '';
 
 Future main() async {
@@ -26,36 +30,46 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // Database Retrieval Examples
-  final studentsEntity = FirebaseFirestore.instance.collection('Students');
+  //--------------------Retrieve User data from Firebase------------------- 
+  _firebase.retrieveEntity('Users');
+  await _firebase.findUserByUsername('username1'); 
+  _firebase.retrieveUserData(); 
+  _firebase.getUserData(); 
 
-  final snapshot =
-      await studentsEntity.where('Username', isEqualTo: 'username2').get();
-  final studentData = snapshot.docChanges.first.doc.data();
 
-  testData = '${studentData}123';
-  var username = '';
-  Iterable<MapEntry<String, dynamic>> entries = studentData!.entries;
-  for (final entry in studentData.entries) {
-    if (entry.key == 'Username') {
-      testData = entry.value;
-      username = entry.value;
+  //--------------------Check Login-------------------
+  String firstName = _firebase.getSingleData('FirstName'); // Retrieves single field of data
+  int passwordMatch = _firebase.comparePassword('password1'); 
+  if (identical(passwordMatch, 0)) {
+    if (identical(true, _firebase.getSingleData('Active'))) { // Checks if user account is still active. 
+      // Write code here to go towards landing page where login was successful. 
+      testData = 'Login Successful';
+      checkUserType(); 
     }
   }
+  else {
+    testData = 'Login Failed';
+  }
 
-  debugPrint('$entries');
-
-  var checkUsername = 'username2';
-  testData = '${username.compareTo(checkUsername)}true';
-
-  studentsEntity.get().then((QuerySnapshot querySnapshot) {
-    for (var doc in querySnapshot.docs) {
-      testData = doc.toString();
-    }
-  });
-
-  // Run the App
   runApp(const MyApp());
+  
+}
+
+
+checkUserType() {
+  //--------------------Check UserType-------------------
+  String userType = _firebase.checkIfTeacherOrStudent(); // Outputs either 'Student' or 'Teacher' 
+  if (identical(userType, 'Teacher') == true) {
+    Teacher teacher = new Teacher(_firebase.getUserData(), _firebase.snapshot);
+  }
+  else if (identical(userType, 'Student') == true) {
+     Student student = new Student(_firebase.getUserData(), _firebase.snapshot);
+     List classList = student.getClasses(); // Adds all classes to a list. Specific class can be retrieved using classList[index] 
+
+    //--------------------Add Points-------------------
+    student.addPoints(1000);
+    testData = student.getDOB();  
+  }
 }
 
 class MyApp extends StatelessWidget {
