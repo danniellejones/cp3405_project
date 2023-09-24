@@ -11,14 +11,15 @@ class FirebaseRetrieval {
   String username = ''; 
 
   RetrieveEntity(String entityName) {
-    this.entity = FirebaseFirestore.instance.collection(entityName);
-    return this.entity; 
+    this.entityName = entityName; 
+    this.entity = FirebaseFirestore.instance.collection(this.entityName);
   }
 
   findUserByUsername(String username) async {
+    return this.entity;
     this.username = username; 
-    this.snapshot = await this.entity.where('Username', isEqualTo: this.username).get(); 
-    return this.username; 
+    final snapshot = await this.entity.where('Username', isEqualTo: 'username1').get(); 
+    return snapshot; 
   }
 
   retrieveUserData() {
