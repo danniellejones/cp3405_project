@@ -32,7 +32,7 @@ Future main() async {
 
   //--------------------Retrieve User data from Firebase------------------- 
   _firebase.retrieveEntity('Users');
-  await _firebase.findUserByUsername('username1'); 
+  await _firebase.findUserByEmail('Email1'); 
   _firebase.retrieveUserData(); 
   _firebase.getUserData(); 
 

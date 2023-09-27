@@ -9,7 +9,7 @@ class FirebaseRetrieval {
   QuerySnapshot<Map<String, dynamic>>? snapshot; 
   Map<String, dynamic>? userData; 
   String password = ''; 
-  String firebaseUsername = ''; 
+  String firebaseEmail = ''; 
   String userType = ''; 
 
   retrieveEntity(String entityName) {
@@ -17,9 +17,9 @@ class FirebaseRetrieval {
     this.entity = FirebaseFirestore.instance.collection(this.entityName);
   }
 
-  findUserByUsername(String username) async {
-    this.firebaseUsername = username; 
-    this.snapshot = await this.entity.where('Username', isEqualTo: username).get(); 
+  findUserByEmail(String email) async {
+    this.firebaseEmail = email; 
+    this.snapshot = await this.entity.where('Email', isEqualTo: email).get(); 
     return this.snapshot; 
   }
 
