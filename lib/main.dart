@@ -20,7 +20,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-FirebaseRetrieval _firebase = new FirebaseRetrieval();  
+FirebaseRetrieval _firebase = new FirebaseRetrieval();
 var testData = '';
 
 Future main() async {
@@ -30,45 +30,47 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  //--------------------Retrieve User data from Firebase------------------- 
+  //--------------------Retrieve User data from Firebase-------------------
   _firebase.retrieveEntity('Users');
-  await _firebase.findUserByUsername('username1'); 
-  _firebase.retrieveUserData(); 
-  _firebase.getUserData(); 
-
+  await _firebase.findUserByUsername('username1');
+  _firebase.retrieveUserData();
+  _firebase.getUserData();
 
   //--------------------Check Login-------------------
-  String firstName = _firebase.getSingleData('FirstName'); // Retrieves single field of data
-  int passwordMatch = _firebase.comparePassword('password1'); 
+  String firstName =
+      _firebase.getSingleData('FirstName'); // Retrieves single field of data
+  int passwordMatch = _firebase.comparePassword('password1');
   if (identical(passwordMatch, 0)) {
-    if (identical(true, _firebase.getSingleData('Active'))) { // Checks if user account is still active. 
-      // Write code here to go towards landing page where login was successful. 
+    if (identical(true, _firebase.getSingleData('Active'))) {
+      // Checks if user account is still active.
+      // Write code here to go towards landing page where login was successful.
       testData = 'Login Successful';
-      checkUserType(); 
+      checkUserType();
     }
-  }
-  else {
+  } else {
     testData = 'Login Failed';
   }
 
   runApp(const MyApp());
-  
 }
 
+late Student? student;
+late Teacher? teacher;
 
 checkUserType() {
   //--------------------Check UserType-------------------
-  String userType = _firebase.checkIfTeacherOrStudent(); // Outputs either 'Student' or 'Teacher' 
+  String userType = _firebase
+      .checkIfTeacherOrStudent(); // Outputs either 'Student' or 'Teacher'
   if (identical(userType, 'Teacher') == true) {
-    Teacher teacher = new Teacher(_firebase.getUserData(), _firebase.snapshot);
-  }
-  else if (identical(userType, 'Student') == true) {
-     Student student = new Student(_firebase.getUserData(), _firebase.snapshot);
-     List classList = student.getClasses(); // Adds all classes to a list. Specific class can be retrieved using classList[index] 
+    teacher = new Teacher(_firebase.getUserData(), _firebase.snapshot);
+  } else if (identical(userType, 'Student') == true) {
+    student = new Student(_firebase.getUserData(), _firebase.snapshot);
+    List classList = student
+        ?.getClasses(); // Adds all classes to a list. Specific class can be retrieved using classList[index]
 
     //--------------------Add Points-------------------
-    student.addPoints(1000);
-    testData = student.getDOB();  
+    student?.addPoints(1000);
+    testData = student?.getDOB();
   }
 }
 
@@ -97,7 +99,9 @@ class MyApp extends StatelessWidget {
         '/studentLanding': (context) => const LandingStudentScreen(),
         '/questBoard': (context) => const QuestBoardScreen(),
         '/questPlanner': (context) => const QuestPlannerScreen(),
-        '/avatar': (context) => const AvatarScreen(),
+        '/avatar': (context) => AvatarScreen(
+              student: student,
+            ),
         '/metrics': (context) => const MetricsScreen(),
         '/classView': (context) => const ClassViewScreen(),
         '/classBoard': (context) => const ClassBoardScreen(),
