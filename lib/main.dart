@@ -12,11 +12,10 @@ import 'package:cp3405_project/screens/screen_signup.dart';
 import 'package:cp3405_project/screens/screen_suggestion.dart';
 import 'package:cp3405_project/screens/screen_welcome.dart';
 import 'package:cp3405_project/models/FirebaseRetrievel.dart';
-import 'package:cp3405_project/models/Student.dart';
-import 'package:cp3405_project/models/Teacher.dart';
+import 'package:cp3405_project/models/student.dart';
+import 'package:cp3405_project/models/teacher.dart';
 import 'package:cp3405_project/screens/screen_login.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -32,9 +31,9 @@ Future main() async {
 
   //--------------------Retrieve User data from Firebase-------------------
   _firebase.retrieveEntity('Users');
-  await _firebase.findUserByEmail('Email1'); 
-  _firebase.retrieveUserData(); 
-  _firebase.getUserData(); 
+  await _firebase.findUserByEmail('Email1');
+  _firebase.retrieveUserData();
+  _firebase.getUserData();
 
   //--------------------Check Login-------------------
   String firstName =
@@ -62,9 +61,9 @@ checkUserType() {
   String userType = _firebase
       .checkIfTeacherOrStudent(); // Outputs either 'Student' or 'Teacher'
   if (identical(userType, 'Teacher') == true) {
-    teacher = new Teacher(_firebase.getUserData(), _firebase.snapshot);
+    teacher = Teacher(_firebase.getUserData(), _firebase.snapshot);
   } else if (identical(userType, 'Student') == true) {
-    student = new Student(_firebase.getUserData(), _firebase.snapshot);
+    student = Student(_firebase.getUserData(), _firebase.snapshot);
     List classList = student
         ?.getClasses(); // Adds all classes to a list. Specific class can be retrieved using classList[index]
 
