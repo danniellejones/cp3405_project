@@ -11,9 +11,9 @@ import 'package:cp3405_project/screens/screen_questplanner.dart';
 import 'package:cp3405_project/screens/screen_signup.dart';
 import 'package:cp3405_project/screens/screen_suggestion.dart';
 import 'package:cp3405_project/screens/screen_welcome.dart';
-import 'package:cp3405_project/Assets/FirebaseRetrievel.dart';
-import 'package:cp3405_project/Assets/Student.dart';
-import 'package:cp3405_project/Assets/Teacher.dart';
+import 'package:cp3405_project/models/FirebaseRetrievel.dart';
+import 'package:cp3405_project/models/Student.dart';
+import 'package:cp3405_project/models/Teacher.dart';
 import 'package:cp3405_project/screens/screen_login.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -32,9 +32,9 @@ Future main() async {
 
   //--------------------Retrieve User data from Firebase-------------------
   _firebase.retrieveEntity('Users');
-  await _firebase.findUserByUsername('username1');
-  _firebase.retrieveUserData();
-  _firebase.getUserData();
+  await _firebase.findUserByEmail('Email1'); 
+  _firebase.retrieveUserData(); 
+  _firebase.getUserData(); 
 
   //--------------------Check Login-------------------
   String firstName =
