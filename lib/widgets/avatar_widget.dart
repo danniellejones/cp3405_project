@@ -1,4 +1,4 @@
-import 'package:cp3405_project/Assets/Student.dart';
+import 'package:cp3405_project/models/student.dart';
 import 'package:flutter/material.dart';
 
 class AvatarWidget extends StatelessWidget {
@@ -15,8 +15,9 @@ class AvatarWidget extends StatelessWidget {
   }
 
   int getLevel() {
-    //student?.getLevel() todo in student class
-    return student?.getPoints() ?? 0; //temp use points value
+    int points = (student?.getPoints() ?? 1000);
+    if (points < 1000) return 1;
+    return points ~/ 1000;
   }
 
   List<Reward> getRewards() {
