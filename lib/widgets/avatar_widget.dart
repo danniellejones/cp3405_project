@@ -11,6 +11,7 @@ class AvatarWidget extends StatelessWidget {
 
   Widget getImage() {
     //student?.getImage() todo in student class
+    
     return const Placeholder();
   }
 
