@@ -64,12 +64,6 @@ checkUserType() {
     teacher = Teacher(_firebase.getUserData(), _firebase.snapshot);
   } else if (identical(userType, 'Student') == true) {
     student = Student(_firebase.getUserData(), _firebase.snapshot);
-    List classList = student
-        ?.getClasses(); // Adds all classes to a list. Specific class can be retrieved using classList[index]
-
-    //--------------------Add Points-------------------
-    student?.addPoints(1000);
-    testData = student?.getDOB();
   }
 }
 

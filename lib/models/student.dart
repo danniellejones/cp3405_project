@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cp3405_project/models/FirebaseRetrievel.dart';
@@ -10,6 +11,7 @@ class Student {
   List classes = []; 
   FirebaseRetrieval firebaseRetrieval = FirebaseRetrieval(); 
   int points = 0; 
+  String avatar = ''; 
 
   Student(Map<String, dynamic>? userData, QuerySnapshot<Map<String, dynamic>>? snapshot) {
     firebaseRetrieval.userData = userData; 
@@ -39,6 +41,11 @@ class Student {
   getPoints() {
     this.points = firebaseRetrieval.getSingleData('Points'); 
     return this.points; 
+  }
+
+  getAvatar() {
+    this.avatar = firebaseRetrieval.getSingleData('Avatar');
+    return this.avatar; 
   }
 
   addPoints(int number) {
