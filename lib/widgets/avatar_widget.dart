@@ -1,4 +1,5 @@
 import 'package:cp3405_project/models/student.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class AvatarWidget extends StatelessWidget {
@@ -9,11 +10,12 @@ class AvatarWidget extends StatelessWidget {
     return student?.getName() ?? '<username>';
   }
 
-  Widget getImage() {
-    //student?.getImage() todo in student class
-    
-    return const Placeholder();
-  }
+String getImage() {
+  final avatarType = student!.getAvatar(); 
+  String imagePath = 'assets/img_' + avatarType.toString() + '.png';
+  // return imagePath;  
+  return imagePath;
+}
 
   int getLevel() {
     int points = (student?.getPoints() ?? 1000);
@@ -56,8 +58,12 @@ class AvatarWidget extends StatelessWidget {
             margin: const EdgeInsets.all(16.0),
             width: 300,
             height: 300,
-            child: getImage(),
-          ),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(getImage()),
+                fit: BoxFit.fill),
+            ) 
+            ),
           // mastery and edit buttons
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
