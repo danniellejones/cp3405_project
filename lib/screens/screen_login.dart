@@ -1,3 +1,4 @@
+import 'package:cp3405_project/main.dart';
 import 'package:cp3405_project/models/FirebaseRetrievel.dart';
 import 'package:cp3405_project/utils/responsive_layout.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -116,16 +117,28 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, _validateUser());
-                      // Error checing - user input
+                      // Error checking - input fields -> later implementation
 
                       // Check user login data in firebase
                       String email = firebaseRetrieval.getSingleData('Email');
+                      String emailMatch = firebaseRetrieval
+                          .findUserByEmail(_emailController.toString());
 
-                      int passwordMatch = firebaseRetrieval
-                          .comparePassword(_passwordController.toString());
+                      if (identical(emailMatch, email)) {
+                        // Compare user input password with stored firedbase password
+                        int passwordMatch = firebaseRetrieval
+                            .comparePassword(_passwordController.toString());
 
-                      if (identical(passwordMatch, 0)) {}
+                        if (identical(passwordMatch, 0)) {
+                          if (identical(true,
+                              firebaseRetrieval.getSingleData('Active'))) {
+                            Navigator.pushNamed(context, _validateUser());
+                            testData = 'Login Successful';
+                          }
+                        }
+                      } else {
+                        testData = 'Login Failed';
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
