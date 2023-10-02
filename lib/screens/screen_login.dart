@@ -1,4 +1,6 @@
+import 'package:cp3405_project/models/FirebaseRetrievel.dart';
 import 'package:cp3405_project/utils/responsive_layout.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -15,6 +17,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  final FirebaseRetrieval firebaseRetrieval = FirebaseRetrieval();
 
   @override
   void dispose() {
@@ -81,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                      'Embark on Your Academic Adventure \nSign in and explore the Depths of Knowledge!',
+                      'Embark on Your Academic Adventure\nSign in and explore the Depths of Knowledge!',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 18, color: Colors.grey)),
                   const SizedBox(height: 30),
@@ -113,15 +117,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, _validateUser());
-                      // setState(() {
-                      //   if (_emailController.text.isEmpty &&
-                      //       _passwordController.text.isEmpty) {
-                      //     validate = false;
-                      //   } else {
-                      //     validate = false;
-                      //   }
-                      // }
-                      // );
+                      // Error checing - user input
+
+                      // Check user login data in firebase
+                      String email = firebaseRetrieval.getSingleData('Email');
+
+                      int passwordMatch = firebaseRetrieval
+                          .comparePassword(_passwordController.toString());
+
+                      if (identical(passwordMatch, 0)) {}
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
