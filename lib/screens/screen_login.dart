@@ -1,5 +1,7 @@
 import 'package:cp3405_project/main.dart';
 import 'package:cp3405_project/models/FirebaseRetrievel.dart';
+import 'package:cp3405_project/models/student.dart';
+import 'package:cp3405_project/models/teacher.dart';
 import 'package:cp3405_project/utils/responsive_layout.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  String userType = '';
+
   final FirebaseRetrieval firebaseRetrieval = FirebaseRetrieval();
 
   @override
@@ -29,11 +33,31 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   String _validateUser() {
-    if (kIsWeb) {
+    // Check user type
+    userType = firebaseRetrieval.checkIfTeacherOrStudent();
+    // Check if user is using on a browser and a teacher.
+    // Later implementation, check if teacher
+
+    if (identical(userType, 'Teacher') == true) {
+      Teacher teacher =
+          Teacher(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
+    } else if (identical(userType, 'Student') == true) {
+      Student student =
+          Student(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
+    }
+
+    if (kIsWeb && userType == 'Teacher') {
       return '/teacherLanding';
     } else {
       return '/studentLanding';
     }
+
+    // Original code
+    // if (kIsWeb) {
+    //   return '/teacherLanding';
+    // } else {
+    //   return '/studentLanding';
+    // }
   }
 
   @override
@@ -117,6 +141,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
+                      // Original code
+                      Navigator.pushNamed(context, _validateUser());
+
                       // Error checking - input fields -> later implementation
 
                       // Check user login data in firebase
@@ -124,7 +151,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       String emailMatch = firebaseRetrieval
                           .findUserByEmail(_emailController.toString());
 
-                      if (identical(emailMatch, email)) {
+                      if (identical(emailMatch, email) == true) {
+                        // If email exsists in firebase, check password
                         // Compare user input password with stored firedbase password
                         int passwordMatch = firebaseRetrieval
                             .comparePassword(_passwordController.toString());
@@ -132,8 +160,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (identical(passwordMatch, 0)) {
                           if (identical(true,
                               firebaseRetrieval.getSingleData('Active'))) {
-                            Navigator.pushNamed(context, _validateUser());
                             testData = 'Login Successful';
+                            Navigator.pushNamed(context, _validateUser());
                           }
                         }
                       } else {
