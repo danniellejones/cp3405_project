@@ -11,6 +11,7 @@ class QuestBoardScreen extends StatelessWidget {
       title: 'Quest Board',
       content: [
         QuestBoardWidget(),
+        // QuestBoard()
       ],
     );
   }
