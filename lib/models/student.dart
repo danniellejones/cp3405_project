@@ -44,7 +44,7 @@ class Student {
   }
 
   getAvatar() {
-    this.avatar = firebaseRetrieval.getSingleData('Avatar');
+    this.avatar = firebaseRetrieval.getSingleData('Avatar').toString().toLowerCase();
     return this.avatar; 
   }
 

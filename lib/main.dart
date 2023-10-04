@@ -60,9 +60,9 @@ checkUserType() {
   //--------------------Check UserType-------------------
   String userType = _firebase
       .checkIfTeacherOrStudent(); // Outputs either 'Student' or 'Teacher'
-  if (identical(userType, 'Teacher') == true) {
+  if (userType == 'Teacher') {
     teacher = Teacher(_firebase.getUserData(), _firebase.snapshot);
-  } else if (identical(userType, 'Student') == true) {
+  } else if (userType == 'Student') {
     student = Student(_firebase.getUserData(), _firebase.snapshot);
   }
 }
@@ -92,9 +92,7 @@ class MyApp extends StatelessWidget {
         '/studentLanding': (context) => const LandingStudentScreen(),
         '/questBoard': (context) => const QuestBoardScreen(),
         '/questPlanner': (context) => const QuestPlannerScreen(),
-        '/avatar': (context) => AvatarScreen(
-              student: student,
-            ),
+        '/avatar': (context) => AvatarScreen(student: student),
         '/metrics': (context) => const MetricsScreen(),
         '/classView': (context) => const ClassViewScreen(),
         '/classBoard': (context) => const ClassBoardScreen(),
