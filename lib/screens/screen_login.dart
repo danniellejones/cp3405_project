@@ -33,6 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   String _validateUser() {
+    // New code
     // Check user type
     userType = firebaseRetrieval.checkIfTeacherOrStudent();
     // Check if user is using on a browser and a teacher.
@@ -142,10 +143,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ElevatedButton(
                     onPressed: () {
                       // Original code
-                      Navigator.pushNamed(context, _validateUser());
+                      // Navigator.pushNamed(context, _validateUser());
 
                       // Error checking - input fields -> later implementation
 
+                      // New code
                       // Check user login data in firebase
                       String email = firebaseRetrieval.getSingleData('Email');
                       String emailMatch = firebaseRetrieval
