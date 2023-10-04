@@ -53,7 +53,7 @@ Future main() async {
   runApp(const MyApp());
 }
 
-late Student? student1;
+late Student? student;
 late Teacher? teacher;
 
 checkUserType() {
@@ -63,7 +63,7 @@ checkUserType() {
   if (userType == 'Teacher') {
     teacher = Teacher(_firebase.getUserData(), _firebase.snapshot);
   } else if (userType == 'Student') {
-    student1 = Student(_firebase.getUserData(), _firebase.snapshot);
+    student = Student(_firebase.getUserData(), _firebase.snapshot);
   }
 }
 
@@ -92,7 +92,7 @@ class MyApp extends StatelessWidget {
         '/studentLanding': (context) => const LandingStudentScreen(),
         '/questBoard': (context) => const QuestBoardScreen(),
         '/questPlanner': (context) => const QuestPlannerScreen(),
-        '/avatar': (context) => AvatarScreen(student: student1),
+        '/avatar': (context) => AvatarScreen(student: student),
         '/metrics': (context) => const MetricsScreen(),
         '/classView': (context) => const ClassViewScreen(),
         '/classBoard': (context) => const ClassBoardScreen(),
