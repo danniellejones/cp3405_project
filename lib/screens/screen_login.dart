@@ -33,12 +33,15 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   String _validateUser() {
+    // New code
+    // Checks if user is on the correct device and then processed to correct page.
     userType = firebaseRetrieval.checkIfTeacherOrStudent();
     if (userType == 'Teacher' && kIsWeb) {
       Teacher teacher =
           Teacher(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
       return '/teacherLanding';
-    } else if (userType == 'Teacher' && !kIsWeb ||
+    } else if (userType == 'Teacher' &&
+            !kIsWeb || // Not the best implementation as it refreshes screen but works.
         userType == 'Student' && kIsWeb) {
       return '/login';
     } else {
@@ -47,6 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
       return '/studentLanding';
     }
 
+    // This code works
     // New code that works no error checking with device type
     // userType = firebaseRetrieval.checkIfTeacherOrStudent();
     // if (userType == 'Teacher' && kIsWeb) {
@@ -162,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         await firebaseRetrieval.findUserByEmail(
                             _emailController.text.toLowerCase());
                       } on Error {
-                        // return "Email address not found" into a Text widget
+                        // Later implementation -> Return "Email address not found" into a Text widget
                       }
                       firebaseRetrieval.retrieveUserData();
 
