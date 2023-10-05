@@ -33,21 +33,33 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   String _validateUser() {
-    // New code
-    // Check user type
     userType = firebaseRetrieval.checkIfTeacherOrStudent();
-    // Check if user is using on a browser and a teacher.
-    // Later implementation, check if teacher
-
     if (userType == 'Teacher' && kIsWeb) {
       Teacher teacher =
           Teacher(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
       return '/teacherLanding';
+    } else if (userType == 'Teacher' && !kIsWeb ||
+        userType == 'Student' && kIsWeb) {
+      return '/login';
     } else {
       Student student =
           Student(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
       return '/studentLanding';
     }
+
+    // New code that works no error checking with device type
+    // userType = firebaseRetrieval.checkIfTeacherOrStudent();
+    // if (userType == 'Teacher' && kIsWeb) {
+    //   Teacher teacher =
+    //       Teacher(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
+    //   return '/teacherLanding';
+    // }
+
+    // else {
+    //   Student student =
+    //       Student(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
+    //   return '/studentLanding';
+    // }
 
     // Original code that works
     // if (kIsWeb) {
