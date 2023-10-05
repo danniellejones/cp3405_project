@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
       return '/studentLanding';
     }
 
-    // Original code
+    // Original code that works
     // if (kIsWeb) {
     //   return '/teacherLanding';
     // } else {
