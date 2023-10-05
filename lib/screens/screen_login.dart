@@ -137,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       // Original code
                       // Navigator.pushNamed(context, _validateUser());
 
@@ -145,25 +145,25 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       // New code
                       // Check user login data in firebase
-                      String email = firebaseRetrieval.getSingleData('Email');
-                      String emailMatch = firebaseRetrieval
-                          .findUserByEmail(_emailController.text);
+                      firebaseRetrieval.retrieveEntity('Users');
+                      try {
+                        await firebaseRetrieval.findUserByEmail(
+                            _emailController.text.toLowerCase());
+                      } on Error {
+                        // return "Email address not found" into a Text widget
+                      }
+                      firebaseRetrieval.retrieveUserData();
 
-                      if (emailMatch == email) {
-                        // If email exsists in firebase, check password
-                        // Compare user input password with stored firedbase password
-                        int passwordMatch = firebaseRetrieval
-                            .comparePassword(_passwordController.text);
+                      // If email exsists in firebase, check password
+                      // Compare user input password with stored firedbase password
+                      int passwordMatch = firebaseRetrieval
+                          .comparePassword(_passwordController.text);
 
-                        if (passwordMatch == 0) {
-                          if (firebaseRetrieval.getSingleData('Active') ==
-                              true) {
-                            testData = 'Login Successful';
-                            Navigator.pushNamed(context, _validateUser());
-                          }
+                      if (passwordMatch == 0) {
+                        if (firebaseRetrieval.getSingleData('Active') == true) {
+                          testData = 'Login Successful';
+                          Navigator.pushNamed(context, _validateUser());
                         }
-                      } else {
-                        testData = 'Login Failed';
                       }
                     },
                     style: ElevatedButton.styleFrom(
