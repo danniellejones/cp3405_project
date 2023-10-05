@@ -11,12 +11,15 @@ import 'package:cp3405_project/screens/screen_questplanner.dart';
 import 'package:cp3405_project/screens/screen_signup.dart';
 import 'package:cp3405_project/screens/screen_suggestion.dart';
 import 'package:cp3405_project/screens/screen_welcome.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cp3405_project/models/FirebaseRetrievel.dart';
+import 'package:cp3405_project/models/student.dart';
+import 'package:cp3405_project/models/teacher.dart';
 import 'package:cp3405_project/screens/screen_login.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+FirebaseRetrieval _firebase = new FirebaseRetrieval();
 var testData = '';
 
 Future main() async {
@@ -26,36 +29,42 @@ Future main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // Database Retrieval Examples
-  final studentsEntity = FirebaseFirestore.instance.collection('Students');
+  //--------------------Retrieve User data from Firebase-------------------
+  _firebase.retrieveEntity('Users');
+  await _firebase.findUserByEmail('jay.davis@my.jcu.edu.au');
+  _firebase.retrieveUserData();
+  _firebase.getUserData();
 
-  final snapshot =
-      await studentsEntity.where('Username', isEqualTo: 'username2').get();
-  final studentData = snapshot.docChanges.first.doc.data();
-
-  testData = '${studentData}123';
-  var username = '';
-  Iterable<MapEntry<String, dynamic>> entries = studentData!.entries;
-  for (final entry in studentData.entries) {
-    if (entry.key == 'Username') {
-      testData = entry.value;
-      username = entry.value;
+  //--------------------Check Login-------------------
+  String firstName =
+      _firebase.getSingleData('FirstName'); // Retrieves single field of data
+  int passwordMatch = _firebase.comparePassword('password1');
+  if (identical(passwordMatch, 0)) {
+    if (identical(true, _firebase.getSingleData('Active'))) {
+      // Checks if user account is still active.
+      // Write code here to go towards landing page where login was successful.
+      testData = 'Login Successful';
+      checkUserType();
     }
+  } else {
+    testData = 'Login Failed';
   }
 
-  debugPrint('$entries');
-
-  var checkUsername = 'username2';
-  testData = '${username.compareTo(checkUsername)}true';
-
-  studentsEntity.get().then((QuerySnapshot querySnapshot) {
-    for (var doc in querySnapshot.docs) {
-      testData = doc.toString();
-    }
-  });
-
-  // Run the App
   runApp(const MyApp());
+}
+
+late Student? student;
+late Teacher? teacher;
+
+checkUserType() {
+  //--------------------Check UserType-------------------
+  String userType = _firebase
+      .checkIfTeacherOrStudent(); // Outputs either 'Student' or 'Teacher'
+  if (userType == 'Teacher') {
+    teacher = Teacher(_firebase.getUserData(), _firebase.snapshot);
+  } else if (userType == 'Student') {
+    student = Student(_firebase.getUserData(), _firebase.snapshot);
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -83,7 +92,7 @@ class MyApp extends StatelessWidget {
         '/studentLanding': (context) => const LandingStudentScreen(),
         '/questBoard': (context) => const QuestBoardScreen(),
         '/questPlanner': (context) => const QuestPlannerScreen(),
-        '/avatar': (context) => const AvatarScreen(),
+        '/avatar': (context) => AvatarScreen(student: student),
         '/metrics': (context) => const MetricsScreen(),
         '/classView': (context) => const ClassViewScreen(),
         '/classBoard': (context) => const ClassBoardScreen(),

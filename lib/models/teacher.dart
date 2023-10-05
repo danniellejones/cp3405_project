@@ -1,5 +1,40 @@
-// A teacher who is a user of the application
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cp3405_project/models/FirebaseRetrievel.dart';
 
-import 'package:cp3405_project/models/user.dart';
+class Teacher {
+  String name = ''; 
+  String email = ''; 
+  String DOB = '';
+  List classes = []; 
+  FirebaseRetrieval firebaseRetrieval = FirebaseRetrieval(); 
+  int points = 0; 
 
-class Teacher extends User {}
+  Teacher(Map<String, dynamic>? userData, QuerySnapshot<Map<String, dynamic>>? snapshot) {
+    firebaseRetrieval.userData = userData; 
+    firebaseRetrieval.snapshot = snapshot; 
+  }
+
+  getName () {  // returns full name
+    this.name = firebaseRetrieval.getSingleData('FirstName') + ' ' + firebaseRetrieval.getSingleData('LastName');
+    return this.name;  
+  }
+
+  getEmail() {
+    this.email = firebaseRetrieval.getSingleData('Email');
+    return this.email;  
+  }
+
+  getDOB() {
+    this.DOB = firebaseRetrieval.getSingleData('DOB');
+    return this.DOB;  
+  }
+
+  getClasses() {
+    this.classes = firebaseRetrieval.getSingleData('Classes');
+    return this.classes;
+  }  
+
+
+}

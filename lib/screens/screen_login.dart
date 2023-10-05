@@ -1,4 +1,9 @@
+import 'package:cp3405_project/main.dart';
+import 'package:cp3405_project/models/FirebaseRetrievel.dart';
+import 'package:cp3405_project/models/student.dart';
+import 'package:cp3405_project/models/teacher.dart';
 import 'package:cp3405_project/utils/responsive_layout.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -16,6 +21,10 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  String userType = '';
+
+  final FirebaseRetrieval firebaseRetrieval = FirebaseRetrieval();
+
   @override
   void dispose() {
     super.dispose();
@@ -24,11 +33,44 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   String _validateUser() {
-    if (kIsWeb) {
+    // New code
+    // Checks if user is on the correct device and then processed to correct page.
+    userType = firebaseRetrieval.checkIfTeacherOrStudent();
+    if (userType == 'Teacher' && kIsWeb) {
+      Teacher teacher =
+          Teacher(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
       return '/teacherLanding';
+    } else if (userType == 'Teacher' &&
+            !kIsWeb || // Not the best implementation as it refreshes screen but works.
+        userType == 'Student' && kIsWeb) {
+      return '/login';
     } else {
+      Student student =
+          Student(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
       return '/studentLanding';
     }
+
+    // This code works
+    // New code that works no error checking with device type
+    // userType = firebaseRetrieval.checkIfTeacherOrStudent();
+    // if (userType == 'Teacher' && kIsWeb) {
+    //   Teacher teacher =
+    //       Teacher(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
+    //   return '/teacherLanding';
+    // }
+
+    // else {
+    //   Student student =
+    //       Student(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
+    //   return '/studentLanding';
+    // }
+
+    // Original code that works
+    // if (kIsWeb) {
+    //   return '/teacherLanding';
+    // } else {
+    //   return '/studentLanding';
+    // }
   }
 
   @override
@@ -81,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 10),
                   const Text(
-                      'Embark on Your Academic Adventure \nSign in and explore the Depths of Knowledge!',
+                      'Embark on Your Academic Adventure\nSign in and explore the Depths of Knowledge!',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 18, color: Colors.grey)),
                   const SizedBox(height: 30),
@@ -111,17 +153,34 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, _validateUser());
-                      // setState(() {
-                      //   if (_emailController.text.isEmpty &&
-                      //       _passwordController.text.isEmpty) {
-                      //     validate = false;
-                      //   } else {
-                      //     validate = false;
-                      //   }
-                      // }
-                      // );
+                    onPressed: () async {
+                      // Original code
+                      // Navigator.pushNamed(context, _validateUser());
+
+                      // Error checking - input fields -> later implementation
+
+                      // New code
+                      // Check user login data in firebase
+                      firebaseRetrieval.retrieveEntity('Users');
+                      try {
+                        await firebaseRetrieval.findUserByEmail(
+                            _emailController.text.toLowerCase());
+                      } on Error {
+                        // Later implementation -> Return "Email address not found" into a Text widget
+                      }
+                      firebaseRetrieval.retrieveUserData();
+
+                      // If email exsists in firebase, check password
+                      // Compare user input password with stored firedbase password
+                      int passwordMatch = firebaseRetrieval
+                          .comparePassword(_passwordController.text);
+
+                      if (passwordMatch == 0) {
+                        if (firebaseRetrieval.getSingleData('Active') == true) {
+                          testData = 'Login Successful';
+                          Navigator.pushNamed(context, _validateUser());
+                        }
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
