@@ -1,58 +1,59 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cp3405_project/models/FirebaseRetrievel.dart';
+import 'package:cp3405_project/models/firebase_retrievel.dart';
 
 class Student {
-  String name = ''; 
-  String email = ''; 
-  String DOB = '';
-  List classes = []; 
-  FirebaseRetrieval firebaseRetrieval = FirebaseRetrieval(); 
-  int points = 0; 
-  String avatar = ''; 
+  String name = '';
+  String email = '';
+  String dob = '';
+  List classes = [];
+  FirebaseRetrieval firebaseRetrieval = FirebaseRetrieval();
+  int points = 0;
+  String avatar = '';
 
-  Student(Map<String, dynamic>? userData, QuerySnapshot<Map<String, dynamic>>? snapshot) {
-    firebaseRetrieval.userData = userData; 
-    firebaseRetrieval.snapshot = snapshot; 
+  Student(Map<String, dynamic>? userData,
+      QuerySnapshot<Map<String, dynamic>>? snapshot) {
+    firebaseRetrieval.userData = userData;
+    firebaseRetrieval.snapshot = snapshot;
   }
 
-  getName () {  // returns full name
-    this.name = firebaseRetrieval.getSingleData('FirstName') + ' ' + firebaseRetrieval.getSingleData('LastName');
-    return this.name;  
+  getName() {
+    // returns full name
+    name = firebaseRetrieval.getSingleData('FirstName') +
+        ' ' +
+        firebaseRetrieval.getSingleData('LastName');
+    return name;
   }
 
   getEmail() {
-    this.email = firebaseRetrieval.getSingleData('Email');
-    return this.email;  
+    email = firebaseRetrieval.getSingleData('Email');
+    return email;
   }
 
-  getDOB() {
-    this.DOB = firebaseRetrieval.getSingleData('DOB');
-    return this.DOB;  
+  getdob() {
+    dob = firebaseRetrieval.getSingleData('dob');
+    return dob;
   }
 
   getClasses() {
-    this.classes = firebaseRetrieval.getSingleData('Classes');
-    return this.classes;
+    classes = firebaseRetrieval.getSingleData('Classes');
+    return classes;
   }
 
   getPoints() {
-    this.points = firebaseRetrieval.getSingleData('Points'); 
-    return this.points; 
+    points = firebaseRetrieval.getSingleData('Points');
+    return points;
   }
 
   getAvatar() {
-    this.avatar = firebaseRetrieval.getSingleData('Avatar').toString().toLowerCase();
-    return this.avatar; 
+    avatar = firebaseRetrieval.getSingleData('Avatar').toString().toLowerCase();
+    return avatar;
   }
 
   addPoints(int number) {
-    FirebaseFirestore.instance.collection('Users').doc(firebaseRetrieval.snapshot!.docs.first.id).update({'Points': getPoints() + number});
-    return this.points; 
+    FirebaseFirestore.instance
+        .collection('Users')
+        .doc(firebaseRetrieval.snapshot!.docs.first.id)
+        .update({'Points': getPoints() + number});
+    return points;
   }
-  
-
-
 }

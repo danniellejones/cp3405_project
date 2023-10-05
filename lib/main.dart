@@ -11,7 +11,7 @@ import 'package:cp3405_project/screens/screen_questplanner.dart';
 import 'package:cp3405_project/screens/screen_signup.dart';
 import 'package:cp3405_project/screens/screen_suggestion.dart';
 import 'package:cp3405_project/screens/screen_welcome.dart';
-import 'package:cp3405_project/models/FirebaseRetrievel.dart';
+import 'package:cp3405_project/models/firebase_retrievel.dart';
 import 'package:cp3405_project/models/student.dart';
 import 'package:cp3405_project/models/teacher.dart';
 import 'package:cp3405_project/screens/screen_login.dart';
@@ -19,7 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-FirebaseRetrieval _firebase = new FirebaseRetrieval();
+FirebaseRetrieval _firebase = FirebaseRetrieval();
 var testData = '';
 
 Future main() async {
@@ -36,8 +36,8 @@ Future main() async {
   _firebase.getUserData();
 
   //--------------------Check Login-------------------
-  String firstName =
-      _firebase.getSingleData('FirstName'); // Retrieves single field of data
+  // String firstName =
+  //     _firebase.getSingleData('FirstName'); // Retrieves single field of data
   int passwordMatch = _firebase.comparePassword('password1');
   if (identical(passwordMatch, 0)) {
     if (identical(true, _firebase.getSingleData('Active'))) {

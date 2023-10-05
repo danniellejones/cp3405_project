@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 enum SampleItem { logout }
 
 class DrawerNavigationWidget extends StatefulWidget {
-  final String Email;
+  final String emailTitle;
   final String email;
 
   const DrawerNavigationWidget({
     super.key,
-    this.Email = 'Email',
+    this.emailTitle = 'Email',
     this.email = 'your_email@example.com',
   });
 
@@ -40,7 +40,7 @@ class _DrawerNavigationWidgetState extends State<DrawerNavigationWidget> {
             child: Column(children: [
               const Icon(Icons.person_2),
               Text(
-                widget.Email,
+                widget.emailTitle,
                 style: const TextStyle(
                   fontSize: 24,
                 ),

@@ -74,7 +74,9 @@ class QuestBoardWidget extends StatelessWidget {
                 child: Center(
                     child: Text(
                   questDescription,
-                  style: const TextStyle(fontSize: 24, fontStyle: ),
+                  style: const TextStyle(
+                    fontSize: 24,
+                  ),
                 )),
               ),
               Container(
