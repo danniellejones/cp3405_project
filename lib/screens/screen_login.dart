@@ -39,17 +39,13 @@ class _LoginScreenState extends State<LoginScreen> {
     // Check if user is using on a browser and a teacher.
     // Later implementation, check if teacher
 
-    if (identical(userType, 'Teacher') == true) {
+    if (userType == 'Teacher' && kIsWeb) {
       Teacher teacher =
           Teacher(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
-    } else if (identical(userType, 'Student') == true) {
-      Student student =
-          Student(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
-    }
-
-    if (kIsWeb && userType == 'Teacher') {
       return '/teacherLanding';
     } else {
+      Student student =
+          Student(firebaseRetrieval.getUserData(), firebaseRetrieval.snapshot);
       return '/studentLanding';
     }
 
@@ -151,17 +147,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Check user login data in firebase
                       String email = firebaseRetrieval.getSingleData('Email');
                       String emailMatch = firebaseRetrieval
-                          .findUserByEmail(_emailController.toString());
+                          .findUserByEmail(_emailController.text);
 
-                      if (identical(emailMatch, email) == true) {
+                      if (emailMatch == email) {
                         // If email exsists in firebase, check password
                         // Compare user input password with stored firedbase password
                         int passwordMatch = firebaseRetrieval
-                            .comparePassword(_passwordController.toString());
+                            .comparePassword(_passwordController.text);
 
-                        if (identical(passwordMatch, 0)) {
-                          if (identical(true,
-                              firebaseRetrieval.getSingleData('Active'))) {
+                        if (passwordMatch == 0) {
+                          if (firebaseRetrieval.getSingleData('Active') ==
+                              true) {
                             testData = 'Login Successful';
                             Navigator.pushNamed(context, _validateUser());
                           }
